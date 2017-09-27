@@ -10,3 +10,7 @@ const headers = {
 export const fetchCategories = () => {
   return axios.get(`${API_URL}/categories`, { headers })
 }
+
+export const fetchPosts = () => {
+  return axios.get(`${API_URL}/posts`, { headers })
+}

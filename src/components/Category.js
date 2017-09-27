@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCategories } from '../actions/category'
+import Posts from './Posts'
 
 class Category extends Component {
   componentDidMount() {
     const { getCategories } = this.props
-
     getCategories()
   }
 
   render() {
     const { categories } = this.props
-    console.log(categories)
     return (
       <div>
         <h2>Category list</h2>
@@ -20,6 +19,7 @@ class Category extends Component {
             <li key={category.name}>{category.name}</li>
           ))}
         </ul>
+        <Posts />
       </div>
     )
   }
