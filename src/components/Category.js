@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getCategories } from '../actions/category'
 import Posts from './Posts'
 
@@ -15,8 +16,10 @@ class Category extends Component {
       <div>
         <h2>Category list</h2>
         <ul>
-          {categories.map(category => (
-            <li key={category.name}>{category.name}</li>
+          {categories.map(c => (
+            <li key={c.name}>
+              <Link to={c.path}>{c.name}</Link>
+            </li>
           ))}
         </ul>
         <Posts />
