@@ -1,12 +1,12 @@
 import * as API from '../utils/API'
-export const CATEGORIES_GET_CATEGORIES = 'CATEGORIES_GET_CATEGORIES'
+import { CATEGORIES_GET_CATEGORIES } from './actionConstants'
 
 export function getCategories() {
   const request = API.fetchCategories()
 
   return dispatch => {
     request.then(({ data }) => {
-      dispatch({ type: CATEGORIES_GET_CATEGORIES, payload: data })
+      dispatch({ type: CATEGORIES_GET_CATEGORIES, payload: data.categories })
     })
   }
 }

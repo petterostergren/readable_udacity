@@ -1,4 +1,4 @@
-import { CATEGORIES_GET_CATEGORIES } from '../actions/category'
+import { CATEGORIES_GET_CATEGORIES } from '../actions/actionConstants'
 
 const categories = (state = [], action) => {
   switch (action.type) {

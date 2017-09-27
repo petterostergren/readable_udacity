@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCategories } from '../actions/category'
@@ -16,7 +15,11 @@ class Category extends Component {
     return (
       <div>
         <h2>Category list</h2>
-        <ul>{categories.map(cat => <li key={cat.name}>{cat.name}</li>)}</ul>
+        <ul>
+          {categories.map(category => (
+            <li key={category.name}>{category.name}</li>
+          ))}
+        </ul>
       </div>
     )
   }
