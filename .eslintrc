@@ -1,0 +1,18 @@
+{
+  "extends": ["standard", "standard-react", "prettier"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+   "plugins": [
+    "react",
+    "prettier",
+    "standard"
+  ],
+   "rules": {
+    "prettier/prettier": "error"
+  }
+
+}
