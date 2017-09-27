@@ -1,18 +1,19 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPosts } from '../actions/posts'
+import { Link } from 'react-router-dom'
+import { getCategoriesPost } from '../actions/category'
 import PostComponent from './PostComponent'
 
-class Posts extends Component {
+class CategoryView extends Component {
   componentDidMount() {
-    const { getPosts } = this.props
-    getPosts()
+    const { getCategoriesPost } = this.props
+    getCategoriesPost(this.props.match.params.category)
   }
 
   renderPosts() {
-    const { posts } = this.props
-    return _.map(posts, post => {
+    const { categories } = this.props
+    return _.map(categories, post => {
       return (
         <PostComponent
           key={post.id}
@@ -32,11 +33,6 @@ class Posts extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    posts: _.filter(state.posts, ['deleted', false]),
-  }),
-  {
-    getPosts,
-  }
-)(Posts)
+export default connect(state => ({ categories: state.categories }), {
+  getCategoriesPost,
+})(CategoryView)

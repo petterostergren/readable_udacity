@@ -1,12 +1,12 @@
 import * as API from '../utils/API'
-import { POSTS_GET_POSTS } from './actionConstants'
+import { POSTS_GET_POST } from './actionConstants'
 
-export function getPosts() {
-  const request = API.fetchPosts()
+export function getPost(postId) {
+  const request = API.fetchPost(postId)
 
   return dispatch => {
     request.then(({ data }) => {
-      dispatch({ type: POSTS_GET_POSTS, payload: data })
+      dispatch({ type: POSTS_GET_POST, payload: data })
     })
   }
 }

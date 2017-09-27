@@ -1,5 +1,8 @@
 import * as API from '../utils/API'
-import { CATEGORIES_GET_CATEGORIES } from './actionConstants'
+import {
+  CATEGORIES_GET_CATEGORIES,
+  CATEGORIES_GET_CATEGORIES_POSTS,
+} from './actionConstants'
 
 export function getCategories() {
   const request = API.fetchCategories()
@@ -7,6 +10,16 @@ export function getCategories() {
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: CATEGORIES_GET_CATEGORIES, payload: data.categories })
+    })
+  }
+}
+
+export function getCategoriesPost(category) {
+  const request = API.fetchCategoriesPost(category)
+
+  return dispatch => {
+    request.then(({ data }) => {
+      dispatch({ type: CATEGORIES_GET_CATEGORIES_POSTS, payload: data })
     })
   }
 }
