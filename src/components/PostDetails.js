@@ -16,6 +16,8 @@ class PostDetails extends Component {
         key={post.id}
         id={post.id}
         title={post.title}
+        body={post.body}
+        readirect={false}
         author={post.author}
         voteScore={post.voteScore}
         category={post.category}

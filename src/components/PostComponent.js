@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import { timeConverter } from '../utils/helper'
 
 class PostComponent extends Component {
+
   renderPost() {
-    const { id, title, voteScore, author, category, timestamp } = this.props
+    const { id, title, voteScore, author, category, timestamp, body, readirect } = this.props
     const time = timeConverter(timestamp)
     return (
       <div key={id}>
@@ -33,12 +34,24 @@ class PostComponent extends Component {
           <Link to={`${category}`}>
             <span className="">{category}</span>
           </Link>
-          <Link to={`${category}/${id}`}>
-            <h3 className="">{title}</h3>
-            <footer className="">
-              Writte by {author}, {time}
-            </footer>
-          </Link>
+          {readirect ? (
+            <Link to={`${category}/${id}`}>
+              <h3 className="">{title}</h3>
+              <p>{body ? `${body}` : ''}</p>
+              <footer className="">
+                Writte by {author}, {time}
+              </footer>
+            </Link>
+          ) : (
+            <div>
+              <h3 className="">{title}</h3>
+              <p>{body ? `${body}` : ''}</p>
+              <footer className="">
+                Writte by {author}, {time}
+              </footer>
+            </div>
+          )}
+
         </div>
       </div>
     )

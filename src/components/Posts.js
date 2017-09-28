@@ -18,6 +18,8 @@ class Posts extends Component {
           key={post.id}
           id={post.id}
           title={post.title}
+          body={false}
+          readirect={true}
           author={post.author}
           voteScore={post.voteScore}
           category={post.category}
