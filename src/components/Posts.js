@@ -16,10 +16,11 @@ class Posts extends Component {
       return (
         <PostComponent
           key={post.id}
-          id={post.id}
+          postId={post.id}
+          isPost
           title={post.title}
           body={false}
-          readirect={true}
+          readirect
           author={post.author}
           voteScore={post.voteScore}
           category={post.category}
@@ -34,11 +35,4 @@ class Posts extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    posts: _.filter(state.posts, ['deleted', false]),
-  }),
-  {
-    getPosts,
-  }
-)(Posts)
+export default connect(null, { getPosts })(Posts)

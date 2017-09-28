@@ -23,6 +23,10 @@ export const fetchPost = postId => {
   return axios.get(`${API_URL}/posts/${postId}`, { headers })
 }
 
+export const postVotePost = (option, id) => {
+  return axios.post(`${API_URL}/posts/${id}`, { option }, { headers })
+}
+
 export const fetchComments = postId => {
   return axios.get(`${API_URL}/posts/${postId}/comments`, { headers })
 }

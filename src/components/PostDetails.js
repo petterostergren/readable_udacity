@@ -18,7 +18,8 @@ class PostDetails extends Component {
       return (
         <PostComponent
           key={comment.id}
-          id={comment.id}
+          postId={comment.id}
+          isPost={false}
           title=""
           body={comment.body}
           readirect={false}
@@ -31,12 +32,14 @@ class PostDetails extends Component {
     })
   }
 
+
   renderPosts() {
     const { post } = this.props
+
     return (
       <PostComponent
         key={post.id}
-        id={post.id}
+        postId={post.id}
         title={post.title}
         body={post.body}
         readirect={false}
@@ -49,13 +52,17 @@ class PostDetails extends Component {
   }
 
   render() {
-    return <div>{this.renderPosts()} <hr/ > {this.renderComments()}</div>
+    return (
+      <div>
+        {this.renderPosts()} <hr /> {this.renderComments()}
+      </div>
+    )
   }
 }
 
 export default connect(
   state => ({
-    post: state.post,
+    post: _.filter(state.post, ['deleted', false]),
     comments: state.comments.comments,
   }),
   {

@@ -1,4 +1,6 @@
+import _ from 'lodash'
 import { COMMENTS_GET_COMMENTS } from '../actions/actionConstants'
+
 
 const categories = (state = [], action) => {
   switch (action.type) {
@@ -6,7 +8,7 @@ const categories = (state = [], action) => {
       return {
         ...state,
         comments: action.payload,
-        numberOfcomments: action.payload.length,
+        numberOfComments: _.groupBy(action.payload, 'parentId'),
       }
     default:
       return state
