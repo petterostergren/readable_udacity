@@ -4,22 +4,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getComments } from '../actions/comment'
 import { timeConverter } from '../utils/helper'
-import { pushVotePost } from '../actions/post'
+import { pushVotePost } from '../actions/posts'
 
 class PostComponent extends Component {
   componentWillMount() {
     const { postId } = this.props
     getComments(postId)
-  }
-
-  renderComments() {
-    const { isPost, comments } = this.props
-    if (isPost) {
-      return _.map(comments, comment => {
-        return (<div>{comments}</div>
-      } else {
-      return <div />
-    }
   }
 
   renderPost() {
@@ -33,8 +23,10 @@ class PostComponent extends Component {
       body,
       readirect,
       pushVotePost,
+      comments,
     } = this.props
     const time = timeConverter(timestamp)
+    console.log(comments)
     return (
       <div key={postId}>
         <div className="">
@@ -64,6 +56,7 @@ class PostComponent extends Component {
             <Link to={`${category}/${postId}`}>
               <h3 className="">{title}</h3>
               <p>{body ? `${body}` : ''}</p>
+              <p>Comments: {comments}</p>
               <footer className="">
                 Writte by {author}, {time}
               </footer>
@@ -74,8 +67,12 @@ class PostComponent extends Component {
               <p>{body ? `${body}` : ''}</p>
               <footer className="">
                 Writte by {author}, {time}
+
+                {/* TODO: Comments should go here in a numbered format. */}
+                <p>Comments: {comments.length}</p>
+
               </footer>
-              {this.renderComments()}
+
             </div>
           )}
         </div>
@@ -98,7 +95,13 @@ PostComponent.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  comments: state.comments[ownProps.postId].length
+  console.log("PostComponent, mapStateToProps ownProps")
+  console.log(ownProps)
+  return {
+    comments: state.comment[ownProps.postId],
+  }
 }
 
-export default connect(mapStateToProps, { pushVotePost, getComments })(PostComponent)
+export default connect(mapStateToProps, { pushVotePost, getComments })(
+  PostComponent
+)

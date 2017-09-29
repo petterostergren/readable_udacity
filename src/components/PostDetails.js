@@ -1,13 +1,13 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPost } from '../actions/post'
+import { getPost } from '../actions/posts'
 import { getComments } from '../actions/comment'
 import PostComponent from './PostComponent'
 
 class PostDetails extends Component {
   componentDidMount() {
-    const { getPost, getComments, match } = this.props
+    const { getPosts, getComments, match } = this.props
     getPost(match.params.postId)
     getComments(match.params.postId)
   }
@@ -33,19 +33,18 @@ class PostDetails extends Component {
   }
 
   renderPosts() {
-    const { post } = this.props
-
+    const { posts } = this.props
     return (
       <PostComponent
-        key={post.id}
-        postId={post.id}
-        title={post.title}
-        body={post.body}
+        key={posts.id}
+        postId={posts.id}
+        title={posts.title}
+        body={posts.body}
         readirect={false}
-        author={post.author}
-        voteScore={post.voteScore}
-        category={post.category}
-        timestamp={post.timestamp}
+        author={posts.author}
+        voteScore={posts.voteScore}
+        category={posts.category}
+        timestamp={posts.timestamp}
       />
     )
   }
@@ -60,9 +59,12 @@ class PostDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // Is this correctly implemented ?
-  comments: state.comments[ownProps.match.params.postId],
-  post: _.filter(state.post, ['deleted', false]),
+  console.log("PostDetails, mapStateToProps ownProps ")
+  console.log(ownProps)
+  return {
+    comments: state.comments[ownProps.match.params.postId],
+    posts: _.filter(state.posts, ['deleted', false]),
+  }
 }
 
 export default connect(mapStateToProps, { getPost, getComments })(PostDetails)

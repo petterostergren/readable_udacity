@@ -14,18 +14,19 @@ class Posts extends Component {
     const { posts } = this.props
     return _.map(posts, post => {
       return (
-        <PostComponent
-          key={post.id}
-          postId={post.id}
-          isPost
-          title={post.title}
-          body={false}
-          readirect
-          author={post.author}
-          voteScore={post.voteScore}
-          category={post.category}
-          timestamp={post.timestamp}
-        />
+        <div>
+          <PostComponent
+            key={post.id}
+            postId={post.id}
+            title={post.title}
+            body={false}
+            readirect
+            author={post.author}
+            voteScore={post.voteScore}
+            category={post.category}
+            timestamp={post.timestamp}
+          />
+        </div>
       )
     })
   }
@@ -35,4 +36,11 @@ class Posts extends Component {
   }
 }
 
-export default connect(null, { getPosts })(Posts)
+export default connect(
+  state => ({
+    posts: _.filter(state.posts, ['deleted', false]),
+  }),
+  {
+    getPosts,
+  }
+)(Posts)
