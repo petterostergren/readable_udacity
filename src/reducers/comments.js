@@ -3,12 +3,12 @@ import { COMMENTS_GET_COMMENTS } from '../actions/actionConstants'
 
 
 const categories = (state = [], action) => {
+  console.log(action.payload)
   switch (action.type) {
     case COMMENTS_GET_COMMENTS:
       return {
         ...state,
-        comments: action.payload,
-        numberOfComments: _.groupBy(action.payload, 'parentId'),
+        comments: _.groupBy(action.payload, 'parentId'),
       }
     default:
       return state

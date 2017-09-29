@@ -32,7 +32,6 @@ class PostDetails extends Component {
     })
   }
 
-
   renderPosts() {
     const { post } = this.props
 
@@ -60,13 +59,10 @@ class PostDetails extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    post: _.filter(state.post, ['deleted', false]),
-    comments: state.comments.comments,
-  }),
-  {
-    getPost,
-    getComments,
-  }
-)(PostDetails)
+const mapStateToProps = (state, ownProps) => {
+  // Is this correctly implemented ?
+  comments: state.comments[ownProps.match.params.postId],
+  post: _.filter(state.post, ['deleted', false]),
+}
+
+export default connect(mapStateToProps, { getPost, getComments })(PostDetails)

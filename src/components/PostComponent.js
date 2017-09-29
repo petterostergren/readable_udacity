@@ -15,8 +15,9 @@ class PostComponent extends Component {
   renderComments() {
     const { isPost, comments } = this.props
     if (isPost) {
-      return <div>{comments}</div>
-    } else {
+      return _.map(comments, comment => {
+        return (<div>{comments}</div>
+      } else {
       return <div />
     }
   }
@@ -97,7 +98,7 @@ PostComponent.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  comments: state.commets
+  comments: state.comments[ownProps.postId].length
 }
 
 export default connect(mapStateToProps, { pushVotePost, getComments })(PostComponent)
