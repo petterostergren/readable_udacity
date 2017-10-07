@@ -1,17 +1,16 @@
-import _ from 'lodash'
 import { COMMENTS_GET_COMMENTS } from '../actions/actionConstants'
 
-
-const categories = (state = {}, action) => {
+const comments = (state = {}, action) => {
+  console.log('comments action', action)
   switch (action.type) {
     case COMMENTS_GET_COMMENTS:
       return {
         ...state,
-        comments: _.groupBy(action.payload, 'parentId'),
+        [action.meta]: action.payload,
       }
     default:
       return state
   }
 }
 
-export default categories
+export default comments

@@ -14,7 +14,7 @@ class Posts extends Component {
     const { posts } = this.props
     return _.map(posts, post => {
       return (
-        <div>
+        <div key={post.id}>
           <PostComponent
             key={post.id}
             postId={post.id}

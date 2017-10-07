@@ -13,11 +13,6 @@ class PostComponent extends Component {
     getComments(postId)
   }
 
-  renderNumberOfCommets(postId) {
-    const { comments } = this.props
-    return comments.length
-  }
-
   renderPost() {
     const {
       postId,
@@ -31,9 +26,8 @@ class PostComponent extends Component {
       pushVotePost,
       comments,
     } = this.props
-    const time = timeConverter(timestamp)
-    console.log('comments')
     console.log(comments)
+    const time = timeConverter(timestamp)
     return (
       <div key={postId}>
         <div className="">
@@ -75,7 +69,7 @@ class PostComponent extends Component {
               <footer className="">
                 Writte by {author}, {time}
                 {/* TODO: Comments should go here in a numbered format. */}
-                <p>Comments: {this.renderNumberOfCommets(postId)}</p>
+                <p>Comments: </p>
               </footer>
             </div>
           )}
@@ -101,8 +95,11 @@ PostComponent.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   console.log('PostComponent, mapStateToProps ownProps')
   console.log(ownProps)
+  console.log('state', state)
   return {
-    comments: state.comments[ownProps.postId],
+    comments: state.comments[ownProps.postId]
+      ? state.comments[ownProps.postId]
+      : [],
   }
 }
 
