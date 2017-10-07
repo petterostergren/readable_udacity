@@ -13,7 +13,7 @@ class PostDetails extends Component {
   }
 
   renderComments() {
-    const { comments } = this.props
+    const { comments, posts, match } = this.props
     return _.map(comments, comment => {
       return (
         <PostComponent

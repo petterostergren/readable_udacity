@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -10,6 +11,11 @@ class PostComponent extends Component {
   componentWillMount() {
     const { postId } = this.props
     getComments(postId)
+  }
+
+  renderNumberOfCommets(postId) {
+    const { comments } = this.props
+    return comments.length
   }
 
   renderPost() {
@@ -26,6 +32,7 @@ class PostComponent extends Component {
       comments,
     } = this.props
     const time = timeConverter(timestamp)
+    console.log('comments')
     console.log(comments)
     return (
       <div key={postId}>
@@ -67,12 +74,9 @@ class PostComponent extends Component {
               <p>{body ? `${body}` : ''}</p>
               <footer className="">
                 Writte by {author}, {time}
-
                 {/* TODO: Comments should go here in a numbered format. */}
-                <p>Comments: {comments.length}</p>
-
+                <p>Comments: {this.renderNumberOfCommets(postId)}</p>
               </footer>
-
             </div>
           )}
         </div>
@@ -95,10 +99,10 @@ PostComponent.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("PostComponent, mapStateToProps ownProps")
+  console.log('PostComponent, mapStateToProps ownProps')
   console.log(ownProps)
   return {
-    comments: state.comment[ownProps.postId],
+    comments: state.comments[ownProps.postId],
   }
 }
 
