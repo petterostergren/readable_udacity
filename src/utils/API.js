@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL = 'http://localhost:5001'
+const API_URL = 'http://localhost:3001'
 
 const headers = {
   Accept: 'application/json',

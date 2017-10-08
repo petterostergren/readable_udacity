@@ -57,7 +57,7 @@ class PostComponent extends Component {
             <Link to={`${category}/${postId}`}>
               <h3 className="">{title}</h3>
               <p>{body ? `${body}` : ''}</p>
-              <p>Comments: {comments}</p>
+              <p>Comments: {comments.length}</p>
               <footer className="">
                 Writte by {author}, {time}
               </footer>
