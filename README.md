@@ -11,6 +11,8 @@ node server
 
 ## App
 ```sh
+git clone https://github.com/petterostergren/readable_udacity.git
+cd readable_udacity
 npm install
 npm start
 ```
