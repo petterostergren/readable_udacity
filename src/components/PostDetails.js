@@ -8,8 +8,8 @@ import PostComponent from './PostComponent'
 class PostDetails extends Component {
   componentDidMount() {
     const { getPosts, getComments, match } = this.props
-    getPost(match.params.postId)
-    getComments(match.params.postId)
+    this.props.getPost(match.params.postId)
+    this.props.getComments(match.params.postId)
   }
 
   renderComments() {
@@ -32,29 +32,13 @@ class PostDetails extends Component {
     })
   }
 
-  renderPostsa() {
-    const { posts } = this.props
-    return (
-      <PostComponent
-        key={posts.id}
-        postId={posts.id}
-        title={posts.title}
-        body={posts.body}
-        readirect={false}
-        author={posts.author}
-        voteScore={posts.voteScore}
-        category={posts.category}
-        timestamp={posts.timestamp}
-      />
-    )
-  }
-
   renderPosts() {
+    console.log('post')
     const { posts } = this.props
     return (
       <PostComponent
         key={posts.id}
-        postId={posts.id}
+        postId={this.props.match.params.postId}
         title={posts.title}
         body={posts.body}
         readirect={false}
@@ -76,11 +60,10 @@ class PostDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('PostDetails, mapStateToProps ownProps ')
-  console.log(ownProps)
+  const { posts } = state
   return {
     comments: state.comments[ownProps.match.params.postId],
-    posts: _.filter(state.posts, ['deleted', false]),
+    posts,
   }
 }
 

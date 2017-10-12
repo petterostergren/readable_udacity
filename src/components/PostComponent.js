@@ -9,8 +9,8 @@ import { pushVotePost } from '../actions/posts'
 
 class PostComponent extends Component {
   componentDidMount() {
-    const { postId } = this.props
-    this.props.getComments(postId)
+    const { postId, getComments } = this.props
+    getComments(postId)
   }
 
   renderPost() {
@@ -69,7 +69,7 @@ class PostComponent extends Component {
               <footer className="">
                 Writte by {author}, {time}
                 {/* TODO: Comments should go here in a numbered format. */}
-                <p>Comments: </p>
+                <p>Comments: {comments.length}</p>
               </footer>
             </div>
           )}
@@ -93,9 +93,6 @@ PostComponent.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('PostComponent, mapStateToProps ownProps')
-  console.log(ownProps)
-  console.log('state', state)
   return {
     comments: state.comments[ownProps.postId]
       ? state.comments[ownProps.postId]
