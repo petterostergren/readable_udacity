@@ -8,7 +8,7 @@ import { timeConverter } from '../utils/helper'
 import { pushVotePost } from '../actions/posts'
 
 class PostComponent extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { postId } = this.props
     getComments(postId)
   }

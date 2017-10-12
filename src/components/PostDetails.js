@@ -32,6 +32,23 @@ class PostDetails extends Component {
     })
   }
 
+  renderPostsa() {
+    const { posts } = this.props
+    return (
+      <PostComponent
+        key={posts.id}
+        postId={posts.id}
+        title={posts.title}
+        body={posts.body}
+        readirect={false}
+        author={posts.author}
+        voteScore={posts.voteScore}
+        category={posts.category}
+        timestamp={posts.timestamp}
+      />
+    )
+  }
+
   renderPosts() {
     const { posts } = this.props
     return (
@@ -59,7 +76,7 @@ class PostDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("PostDetails, mapStateToProps ownProps ")
+  console.log('PostDetails, mapStateToProps ownProps ')
   console.log(ownProps)
   return {
     comments: state.comments[ownProps.match.params.postId],
