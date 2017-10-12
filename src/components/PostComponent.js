@@ -10,7 +10,7 @@ import { pushVotePost } from '../actions/posts'
 class PostComponent extends Component {
   componentDidMount() {
     const { postId } = this.props
-    getComments(postId)
+    this.props.getComments(postId)
   }
 
   renderPost() {
