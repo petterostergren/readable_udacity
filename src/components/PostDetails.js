@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getPost } from '../actions/posts'
 import { getComments } from '../actions/comment'
 import PostComponent from './PostComponent'
+import PostComment from './PostComment'
 
 class PostDetails extends Component {
   componentDidMount() {
@@ -13,19 +14,15 @@ class PostDetails extends Component {
   }
 
   renderComments() {
-    const { comments, posts, match } = this.props
+    const { comments } = this.props
     return _.map(comments, comment => {
       return (
-        <PostComponent
+        <PostComment
           key={comment.id}
           postId={comment.id}
-          isPost={false}
-          title=""
           body={comment.body}
-          readirect={false}
           author={comment.author}
           voteScore={comment.voteScore}
-          category=""
           timestamp={comment.timestamp}
         />
       )

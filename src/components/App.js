@@ -10,13 +10,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+
         <Router>
+          <div>
+            <Header />
+
           <Switch>
             <Route exact path="/" component={Posts} />
             <Route exact path="/:category/:postId" component={PostDetails} />
             <Route exact path="/:category" component={CategoryView} />
           </Switch>
+          </div>
         </Router>
       </div>
     )

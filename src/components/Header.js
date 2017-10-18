@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { getCategories } from '../actions/category'
 
 class Header extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const { getCategories } = this.props
     getCategories()
   }
