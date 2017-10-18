@@ -1,8 +1,4 @@
-import {
-  POSTS_GET_POSTS,
-  POST_VOTE_POST,
-  POSTS_GET_POST,
-} from '../actions/actionConstants'
+import { POSTS_GET_POSTS, POST_VOTE_POST } from '../actions/actionConstants'
 
 const posts = (state = [], action) => {
   const { payload } = action
@@ -15,8 +11,6 @@ const posts = (state = [], action) => {
         ...state.slice(itemIndex + 1),
       ]
       return nextState
-    case POSTS_GET_POST:
-      return payload
     case POSTS_GET_POSTS:
       return payload
     default:

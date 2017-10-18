@@ -31,18 +31,18 @@ class PostDetails extends Component {
 
   renderPosts() {
     console.log('post')
-    const { posts } = this.props
+    const { post } = this.props
     return (
       <PostComponent
-        key={posts.id}
+        key={post.id}
         postId={this.props.match.params.postId}
-        title={posts.title}
-        body={posts.body}
+        title={post.title}
+        body={post.body}
         readirect={false}
-        author={posts.author}
-        voteScore={posts.voteScore}
-        category={posts.category}
-        timestamp={posts.timestamp}
+        author={post.author}
+        voteScore={post.voteScore}
+        category={post.category}
+        timestamp={post.timestamp}
       />
     )
   }
@@ -59,10 +59,10 @@ class PostDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { posts } = state
+  const { post, comments } = state
   return {
-    comments: state.comments[ownProps.match.params.postId],
-    posts,
+    comments: comments[ownProps.match.params.postId],
+    post,
   }
 }
 
