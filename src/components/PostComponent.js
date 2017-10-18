@@ -53,7 +53,7 @@ class PostComponent extends Component {
             Posted in <Link to={`${category}`}>{category}</Link> by {author} |{' '}
             {time}
           </p>
-          {body ? (<p>{body}</p> ) : ('')}
+          {body ? <p>{body}</p> : ''}
           <footer className="post-footer">
             <ul>
               <li>
@@ -70,8 +70,17 @@ class PostComponent extends Component {
           </footer>
         </div>
         <div className="message-wrapper">
-          <i className="fa fa-comments-o" aria-hidden="true" />
-          <span className="comment-count">{comments.length}</span>
+          {readirect ? (
+            <Link to={`${category}/${postId}`}>
+              <i className="fa fa-comments-o" aria-hidden="true" />
+              <span className="comment-count">{comments.length}</span>
+            </Link>
+          ) : (
+            <Link to={`${category}/${postId}/#comments`}>
+              <i className="fa fa-comments-o" aria-hidden="true" />
+              <span className="comment-count">{comments.length}</span>
+            </Link>
+          )}
         </div>
       </div>
     )

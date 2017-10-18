@@ -302,11 +302,19 @@ nav.top-nav button:hover {
   color: white;
   cursor: pointer;
 }
-.message-wrapper i {
+.message-wrapper a i {
   font-size: 2em; /* 32 px / 16px */
 }
+
+.message-wrapper a {
+  text-decoration: none;
+  color: inherit;
+
+}
 .comment-count {
-  font-size: 12px;
+  font-size: 1em;
+  display: block;
+  text-align: center;
 }
 
 .clearfix:after {
@@ -342,7 +350,7 @@ nav.top-nav button:hover {
     font-size: 1rem;
   }
 
-  .message-wrapper i {
+  .message-wrapper a i {
     font-size: 1.5em;
   }
 
