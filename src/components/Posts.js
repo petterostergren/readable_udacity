@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPosts } from '../actions/posts'
 import PostComponent from './PostComponent'
+import SortPosts from './SortPosts'
 
 class Posts extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class Posts extends Component {
     const { posts } = this.props
     return _.map(posts, post => {
       return (
-        <div key={post.id}>
+        <div className="post-container" key={post.id}>
           <PostComponent
             key={post.id}
             postId={post.id}
@@ -32,7 +33,15 @@ class Posts extends Component {
   }
 
   render() {
-    return <div>{this.renderPosts()}</div>
+    return (
+      <div className="container-wrapper">
+        <div className="container">
+          <h1>All Posts</h1>
+          {<SortPosts />}
+          {this.renderPosts()}
+        </div>
+      </div>
+    )
   }
 }
 

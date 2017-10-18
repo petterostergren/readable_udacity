@@ -52,8 +52,10 @@ class PostDetails extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-wrapper">
+        <div className="container">
         {this.renderPosts()} <hr /> {this.renderComments()}
+      </div>
       </div>
     )
   }

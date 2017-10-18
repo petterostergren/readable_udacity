@@ -13,7 +13,7 @@ class PostComponent extends Component {
     getComments(postId)
   }
 
-  renderPost() {
+  render() {
     const {
       postId,
       title,
@@ -26,60 +26,55 @@ class PostComponent extends Component {
       pushVotePost,
       comments,
     } = this.props
-    console.log(comments)
     const time = timeConverter(timestamp)
     return (
-      <div key={postId}>
-        <div className="">
-          <ul className="">
-            <li>
-              <p>
-                <span
-                  className="fa fa-angle-up voteArrow"
-                  onClick={() => pushVotePost('upVote', postId)}
-                />
-              </p>
-            </li>
-            <li className="votes">{voteScore}</li>
-            <li>
-              <span
-                className="fa fa-angle-down voteArrow"
-                onClick={() => pushVotePost('downVote', postId)}
-              />
-            </li>
-          </ul>
+      <div className="post" key={postId}>
+        <div className="vote-container">
+          <i
+            className="fa fa-chevron-up"
+            aria-hidden="true"
+            onClick={() => pushVotePost('upVote', postId)}
+          />
+          <span className="vote-amount">{voteScore}</span>
+          <i
+            className="fa fa-chevron-down"
+            onClick={() => pushVotePost('downVote', postId)}
+          />
         </div>
-        <div className="">
-          <Link to={`${category}`}>
-            <span className="">{category}</span>
-          </Link>
+        <div className="post-content-container">
           {readirect ? (
             <Link to={`${category}/${postId}`}>
-              <h3 className="">{title}</h3>
-              <p>{body ? `${body}` : ''}</p>
-              <p>Comments: {comments.length}</p>
-              <footer className="">
-                Writte by {author}, {time}
-              </footer>
+              <h2 className="post-content-clickable">{title}</h2>
             </Link>
           ) : (
-            <div>
-              <h3 className="">{title}</h3>
-              <p>{body ? `${body}` : ''}</p>
-              <footer className="">
-                Writte by {author}, {time}
-                {/* TODO: Comments should go here in a numbered format. */}
-                <p>Comments: {comments.length}</p>
-              </footer>
-            </div>
+            <h2>{title}</h2>
           )}
+          <p className="post-content-info">
+            Posted in <Link to={`${category}`}>{category}</Link> by {author} |{' '}
+            {time}
+          </p>
+          {body ? (<p>{body}</p> ) : ('')}
+          <footer className="post-footer">
+            <ul>
+              <li>
+                <Link to="#">
+                  <i className="fa fa-pencil-square-o" aria-hidden="true" />
+                </Link>
+              </li>
+              <li>
+                <Link to="#">
+                  <i className="fa fa-trash-o" aria-hidden="true" />
+                </Link>
+              </li>
+            </ul>
+          </footer>
+        </div>
+        <div className="message-wrapper">
+          <i className="fa fa-comments-o" aria-hidden="true" />
+          <span className="comment-count">{comments.length}</span>
         </div>
       </div>
     )
-  }
-
-  render() {
-    return <div>{this.renderPost()}</div>
   }
 }
 

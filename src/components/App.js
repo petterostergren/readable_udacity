@@ -3,17 +3,19 @@ import '../App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import CategoryView from './Category_View'
 import PostDetails from './PostDetails'
-import Category from './Category'
+import Header from './Header'
+import Posts from './Posts'
 
 class App extends Component {
   render() {
     return (
       <div>
+        <Header />
         <Router>
           <Switch>
-            <Route exact path="/" component={Category} />
+            <Route exact path="/" component={Posts} />
             <Route exact path="/:category/:postId" component={PostDetails} />
-            <Route path="/:category" component={CategoryView} />
+            <Route exact path="/:category" component={CategoryView} />
           </Switch>
         </Router>
       </div>
