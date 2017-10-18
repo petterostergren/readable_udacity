@@ -8,7 +8,7 @@ import PostComment from './PostComment'
 
 class PostDetails extends Component {
   componentDidMount() {
-    const { getPosts, getComments, match } = this.props
+    const { getPost, getComments, match } = this.props
     this.props.getPost(match.params.postId)
     this.props.getComments(match.params.postId)
   }

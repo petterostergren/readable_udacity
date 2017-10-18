@@ -145,11 +145,13 @@ nav.top-nav button:hover {
 
 .dropdown-content-sort a:hover {background-color: #f1f1f1}
 
-.dropdown-sort:hover .dropdown-content-sort {
+.dropdown-sort:hover .dropdown-content-sort,
+.dropdown-sort:active .dropdown-content-sort {
     display: block;
 }
 
-.dropdown-sort:hover .dropbtn-sort {
+.dropdown-sort:hover .dropbtn-sort,
+.dropdown-sort:active .dropbtn-sort {
 	-webkit-transition: border-radius 1s;
 	transition: border-radius 1s;
 	border-radius: 4px 4px 0 0;

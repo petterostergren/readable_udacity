@@ -25,7 +25,7 @@ export function pushVotePost(option, postId) {
 
   return dispatch => {
     request.then(({ data }) => {
-      dispatch({ type: POST_VOTE_POST, payload: data })
+      dispatch({ type: POST_VOTE_POST, payload: data, meta: postId })
     })
   }
 }

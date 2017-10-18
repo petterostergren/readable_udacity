@@ -9,6 +9,12 @@ class Header extends Component {
     getCategories()
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    nextProps.categories
+
+  }
+
   render() {
     const { categories } = this.props
     return (

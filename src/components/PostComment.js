@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { timeConverter } from '../utils/helper'
 import { pushVotePost } from '../actions/posts'
 
@@ -32,8 +33,7 @@ class PostComment extends Component {
         <div className="post-content-container">
           <h2>{body}</h2>
           <p className="post-content-info">
-            Postedby {author} |{time}
-            {time}
+            Posted by {author}, {time}
           </p>
           {body ? <p>{body}</p> : ''}
           <footer className="post-footer">
@@ -63,4 +63,4 @@ PostComment.propTypes = {
   timestamp: PropTypes.number,
 }
 
-export default PostComment
+export default connect(null, { pushVotePost })(PostComment)
