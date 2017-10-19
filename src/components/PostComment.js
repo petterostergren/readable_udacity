@@ -3,17 +3,19 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { timeConverter } from '../utils/helper'
-import { pushVotePost } from '../actions/posts'
+import { pushVoteComment } from '../actions/comment'
 
 class PostComment extends Component {
+
   render() {
+    console.log(this.props)
     const {
       postId,
       voteScore,
       author,
       timestamp,
       body,
-      pushVotePost,
+      pushVoteComment,
     } = this.props
     const time = timeConverter(timestamp)
     return (
@@ -22,12 +24,12 @@ class PostComment extends Component {
           <i
             className="fa fa-chevron-up"
             aria-hidden="true"
-            onClick={() => pushVotePost('upVote', postId)}
+            onClick={() => pushVoteComment('upVote', postId)}
           />
           <span className="vote-amount">{voteScore}</span>
           <i
             className="fa fa-chevron-down"
-            onClick={() => pushVotePost('downVote', postId)}
+            onClick={() => pushVoteComment('downVote', postId)}
           />
         </div>
         <div className="post-content-container">
@@ -62,7 +64,7 @@ PostComment.propTypes = {
   author: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
-  pushVotePost: PropTypes.func.isRequired,
+  pushVoteComment: PropTypes.func.isRequired,
 }
 
-export default connect(null, { pushVotePost })(PostComment)
+export default connect(null, { pushVoteComment })(PostComment)

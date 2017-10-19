@@ -16,6 +16,7 @@ class PostDetails extends Component {
 
   renderComments() {
     const { comments, post } = this.props
+    console.log('This is how comments looks after leving mapStateToProps: ', comments)
     return _.map(comments, comment => {
       return (
         <div key={comment.id} className="post-container">
@@ -81,6 +82,7 @@ PostDetails.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const { posts, comments } = state
+  console.log("This is how comments look inside of mapStateToProps", comments)
   return {
     comments: comments[ownProps.match.params.postId],
     post: posts.filter(
