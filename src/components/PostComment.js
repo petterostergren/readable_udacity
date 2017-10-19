@@ -60,7 +60,9 @@ PostComment.propTypes = {
   postId: PropTypes.string,
   voteScore: PropTypes.number,
   author: PropTypes.string,
+  body: PropTypes.stirng,
   timestamp: PropTypes.number,
+  pushVotePost: PropTypes.function,
 }
 
 export default connect(null, { pushVotePost })(PostComment)
