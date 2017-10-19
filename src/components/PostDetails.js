@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPosts } from '../actions/posts'
 import { getComments } from '../actions/comment'
@@ -9,33 +10,37 @@ import PostComment from './PostComment'
 class PostDetails extends Component {
   componentDidMount() {
     const { getPosts, getComments, match } = this.props
-    this.props.getPosts()
-    this.props.getComments(match.params.postId)
+    getPosts()
+    getComments(match.params.postId)
   }
 
   renderComments() {
-    const { comments } = this.props
+    const { comments, post } = this.props
     return _.map(comments, comment => {
       return (
-        <PostComment
-          key={comment.id}
-          postId={comment.id}
-          body={comment.body}
-          author={comment.author}
-          voteScore={comment.voteScore}
-          timestamp={comment.timestamp}
-        />
+        <div key={comment.id} className="post-container">
+          {post ? (
+            <PostComment
+              key={comment.id}
+              postId={comment.id}
+              body={comment.body}
+              author={comment.author}
+              voteScore={comment.voteScore}
+              timestamp={comment.timestamp}
+            />
+          ) : (
+            ''
+          )}
+        </div>
       )
     })
   }
 
   renderPosts() {
-    console.log('post')
     const { post } = this.props
-    console.log(post)
     return (
-      <div>
-        {post && (
+      <div className="post-container">
+        {post ? (
           <PostComponent
             key={post.id}
             postId={this.props.match.params.postId}
@@ -47,6 +52,8 @@ class PostDetails extends Component {
             category={post.category}
             timestamp={post.timestamp}
           />
+        ) : (
+          ''
         )}
       </div>
     )
@@ -56,19 +63,29 @@ class PostDetails extends Component {
     return (
       <div className="container-wrapper">
         <div className="container">
-          {this.renderPosts()} <hr /> {this.renderComments()}
+          {this.renderPosts()}
+          <hr /> {this.renderComments()}
         </div>
       </div>
     )
   }
 }
 
+PostDetails.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  getComments: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  comments: PropTypes.array,
+  post: PropTypes.object,
+}
+
 const mapStateToProps = (state, ownProps) => {
   const { posts, comments } = state
-  console.log(posts, 'OwnProps: postId', ownProps.match.params.postId)
   return {
     comments: comments[ownProps.match.params.postId],
-    post: posts.filter(item => item.postId === ownProps.match.params.postId),
+    post: posts.filter(
+      item => item.id === ownProps.match.params.postId && item.deleted !== true
+    )[0],
   }
 }
 

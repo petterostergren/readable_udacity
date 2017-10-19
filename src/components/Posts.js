@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPosts } from '../actions/posts'
 import PostComponent from './PostComponent'
@@ -20,7 +21,6 @@ class Posts extends Component {
             key={post.id}
             postId={post.id}
             title={post.title}
-            body={false}
             readirect
             author={post.author}
             voteScore={post.voteScore}
@@ -43,6 +43,11 @@ class Posts extends Component {
       </div>
     )
   }
+}
+
+Posts.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired,
 }
 
 export default connect(

@@ -57,12 +57,12 @@ class PostComment extends Component {
 }
 
 PostComment.propTypes = {
-  postId: PropTypes.string,
-  voteScore: PropTypes.number,
-  author: PropTypes.string,
-  body: PropTypes.stirng,
-  timestamp: PropTypes.number,
-  pushVotePost: PropTypes.function,
+  postId: PropTypes.string.isRequired,
+  voteScore: PropTypes.number.isRequired,
+  author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
+  body: PropTypes.string.isRequired,
+  pushVotePost: PropTypes.func.isRequired,
 }
 
 export default connect(null, { pushVotePost })(PostComment)

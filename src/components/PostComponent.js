@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -76,7 +75,7 @@ class PostComponent extends Component {
               <span className="comment-count">{comments.length}</span>
             </Link>
           ) : (
-            <Link to={`${category}/${postId}/#comments`}>
+            <Link to={`${category}/${postId}`}>
               <i className="fa fa-comments-o" aria-hidden="true" />
               <span className="comment-count">{comments.length}</span>
             </Link>
@@ -88,12 +87,17 @@ class PostComponent extends Component {
 }
 
 PostComponent.propTypes = {
-  id: PropTypes.string,
-  voteScore: PropTypes.number,
-  title: PropTypes.string,
-  author: PropTypes.string,
-  category: PropTypes.string,
-  timestamp: PropTypes.number,
+  postId: PropTypes.string.isRequired,
+  getComments: PropTypes.func.isRequired,
+  pushVotePost: PropTypes.func.isRequired,
+  comments: PropTypes.array.isRequired,
+  readirect: PropTypes.bool.isRequired,
+  voteScore: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string,
+  author: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
