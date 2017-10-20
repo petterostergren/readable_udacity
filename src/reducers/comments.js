@@ -11,9 +11,11 @@ const comments = (state = {}, action) => {
         [action.meta]: action.payload,
       }
     case COMMENTS_POST_VOTE:
-      console.log('An vote request was sent returning ', action.payload)
-      const updatedPost = {...state, [action.payload.id]: action.payload}
-      console.log('I modified it as following', updatedPost)
+      const { parentId } = action.payload // get commentId
+      const commentList = [...state[parentId]] // get array of comments, but copy it
+      const commentIndex = commentList.findIndex(({ id }) => action.payload.id) // get index of comment
+      commentList[commentIndex] = action.payload // update the commentList
+      const updatedPost = { ...state, [parentId]: commentList } // return new state
       return updatedPost
     default:
       return state
