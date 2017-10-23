@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getComments } from '../actions/comment'
 import { timeConverter } from '../utils/helper'
-import { pushVotePost } from '../actions/posts'
+import { pushVotePost, delPost } from '../actions/posts'
 
 class PostComponent extends Component {
   componentDidMount() {
@@ -61,9 +61,11 @@ class PostComponent extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="#">
-                  <i className="fa fa-trash-o" aria-hidden="true" />
-                </Link>
+                <i
+                  className="fa fa-trash-o"
+                  aria-hidden="true"
+                  onClick={() => delPost(postId)}
+                />
               </li>
             </ul>
           </footer>
@@ -108,6 +110,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { pushVotePost, getComments })(
+export default connect(mapStateToProps, { pushVotePost, getComments, delPost })(
   PostComponent
 )

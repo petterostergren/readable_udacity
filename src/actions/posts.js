@@ -3,6 +3,7 @@ import {
   POSTS_GET_POSTS,
   POSTS_GET_POST,
   POST_VOTE_POST,
+  POST_DELETE_POST,
 } from './actionConstants'
 
 export function getPosts() {
@@ -30,7 +31,17 @@ export function pushVotePost(option, postId) {
 
   return dispatch => {
     request.then(({ data }) => {
-      dispatch({ type: POST_VOTE_POST, payload: data, meta: postId})
+      dispatch({ type: POST_VOTE_POST, payload: data, meta: postId })
+    })
+  }
+}
+
+export function delPost(postId) {
+  const request = API.postDelPost(postId)
+
+  return dispatch => {
+    request.then(({ data }) => {
+      dispatch({ type: POST_DELETE_POST, payload: data })
     })
   }
 }

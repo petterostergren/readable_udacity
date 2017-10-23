@@ -23,12 +23,16 @@ export const fetchPost = postId => {
   return axios.get(`${API_URL}/posts/${postId}`, { headers })
 }
 
-export const postVotePost = (option, id) => {
-  return axios.post(`${API_URL}/posts/${id}`, { option }, { headers })
+export const postVotePost = (option, postId) => {
+  return axios.post(`${API_URL}/posts/${postId}`, { option }, { headers })
 }
 
-export const commentPostVote= (option, id) => {
-  return axios.post(`${API_URL}/comments/${id}`, { option }, { headers })
+export const postDelPost = (postId) => {
+  return axios.delete(`${API_URL}/posts/${postId}`, { headers })
+}
+
+export const commentPostVote = (option, postId) => {
+  return axios.post(`${API_URL}/comments/${postId}`, { option }, { headers })
 }
 
 export const fetchComments = postId => {
