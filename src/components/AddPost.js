@@ -82,7 +82,7 @@ class AddPost extends Component {
               />
 
               <button className="btn" type="submit">Submit</button>
-              <button className="btn">
+              <button className="btn" type="reset">
                 <Link to="/">Cancel</Link>
               </button>
             </div>
