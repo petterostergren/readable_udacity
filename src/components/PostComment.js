@@ -6,9 +6,7 @@ import { timeConverter } from '../utils/helper'
 import { pushVoteComment } from '../actions/comment'
 
 class PostComment extends Component {
-
   render() {
-    console.log(this.props)
     const {
       postId,
       voteScore,

@@ -38,7 +38,7 @@ export function pushVotePost(option, postId) {
 
 export function delPost(postId) {
   const request = API.postDelPost(postId)
-
+  console.log('Del Post action request ', request)
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: POST_DELETE_POST, payload: data })
