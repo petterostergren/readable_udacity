@@ -275,12 +275,13 @@ nav.top-nav button:hover {
 }
 
 .post-footer li:hover,
-.post-footer li a .fa:hover {
+.post-footer li .fa:hover {
   color: #eeb431;
   cursor: pointer;
 }
 
-.post-footer li a {
+.post-footer li a,
+.post-footer li .trashCan {
   display: block;
   color: #222;
   text-align: right;

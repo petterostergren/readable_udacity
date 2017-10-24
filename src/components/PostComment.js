@@ -44,9 +44,7 @@ class PostComment extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="#">
-                  <i className="fa fa-trash-o" aria-hidden="true" />
-                </Link>
+                <i className="fa fa-trash-o trashCan" aria-hidden="true" />
               </li>
             </ul>
           </footer>

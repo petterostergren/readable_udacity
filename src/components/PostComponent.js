@@ -63,7 +63,7 @@ class PostComponent extends Component {
               </li>
               <li>
                 <i
-                  className="fa fa-trash-o"
+                  className="fa fa-trash-o trashCan"
                   aria-hidden="true"
                   onClick={() => delPost(postId)}
                 />
