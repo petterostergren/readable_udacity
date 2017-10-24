@@ -5,6 +5,7 @@ import {
   POST_VOTE_POST,
   POST_DELETE_POST,
   POST_CREATE_POST,
+  POST_EDIT_POST,
 } from './actionConstants'
 import cuid from 'cuid'
 
@@ -54,11 +55,23 @@ export function createPost(option) {
   option.deleted = false
   console.log(option)
 
+
   const request = API.pushPost(option)
 
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: POST_CREATE_POST, payload: data })
+    })
+  }
+}
+
+export function editPost(option, postId) {
+  console.log(option, postId)
+  const request = API.putPost(option, postId)
+
+  return dispatch => {
+    request.then(({ data }) => {
+      dispatch({ type: POST_EDIT_POST, payload: data })
     })
   }
 }

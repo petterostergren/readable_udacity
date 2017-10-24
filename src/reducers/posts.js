@@ -1,5 +1,6 @@
 import {
   POSTS_GET_POSTS,
+  POSTS_GET_POST,
   POST_VOTE_POST,
   POST_DELETE_POST,
   POST_CREATE_POST,
@@ -20,6 +21,8 @@ const posts = (state = [], action) => {
       ]
       return nextState
     case POSTS_GET_POSTS:
+      return payload
+    case POSTS_GET_POST:
       return payload
     case POST_DELETE_POST:
       const postIdIndex = state.findIndex(item => item.id === payload.id)

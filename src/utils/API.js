@@ -19,6 +19,10 @@ export const pushPost = option => {
   return axios.post(`${API_URL}/posts`, { option }, { headers })
 }
 
+export const putPost = (option, postId) => {
+  return axios.put(`${API_URL}/posts/${postId}`, { option }, { headers })
+}
+
 export const fetchPosts = () => {
   return axios.get(`${API_URL}/posts`, { headers })
 }
