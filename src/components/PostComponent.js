@@ -24,6 +24,7 @@ class PostComponent extends Component {
       readirect,
       pushVotePost,
       comments,
+      delPost,
     } = this.props
     const time = timeConverter(timestamp)
     return (
@@ -100,6 +101,7 @@ PostComponent.propTypes = {
   author: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
+  delPost: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {

@@ -42,6 +42,6 @@ export function delPost(postId) {
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: POST_DELETE_POST, payload: data })
-    })
+    }, console.log('hi'))
   }
 }

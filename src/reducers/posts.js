@@ -18,7 +18,6 @@ const posts = (state = [], action) => {
     case POSTS_GET_POSTS:
       return payload
     case POST_DELETE_POST:
-      console.log('Entered DeletePost reducer ', payload)
       const postIdIndex = state.findIndex(item => item.id === payload.id)
       const stateToBeRemoved = [
         ...state.slice(0, postIdIndex),
