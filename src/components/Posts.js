@@ -14,6 +14,7 @@ class Posts extends Component {
 
   renderPosts() {
     const { posts } = this.props
+    console.log(posts)
     return _.map(posts, post => {
       return (
         <div className="post-container" key={post.id}>

@@ -4,7 +4,9 @@ import {
   POSTS_GET_POST,
   POST_VOTE_POST,
   POST_DELETE_POST,
+  POST_CREATE_POST,
 } from './actionConstants'
+import cuid from 'cuid'
 
 export function getPosts() {
   const request = API.fetchPosts()
@@ -38,10 +40,25 @@ export function pushVotePost(option, postId) {
 
 export function delPost(postId) {
   const request = API.postDelPost(postId)
-  console.log('Del Post action request ', request)
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: POST_DELETE_POST, payload: data })
-    }, console.log('hi'))
+    })
+  }
+}
+
+export function createPost(option) {
+  const postId = cuid()
+  option.id = postId
+  option.timestamp = Date.now()
+  option.deleted = false
+  console.log(option)
+
+  const request = API.pushPost(option)
+
+  return dispatch => {
+    request.then(({ data }) => {
+      dispatch({ type: POST_CREATE_POST, payload: data })
+    })
   }
 }

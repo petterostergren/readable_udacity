@@ -15,6 +15,10 @@ export const fetchCategoriesPost = category => {
   return axios.get(`${API_URL}/${category}/posts`, { headers })
 }
 
+export const pushPost = option => {
+  return axios.post(`${API_URL}/posts`, { option }, { headers })
+}
+
 export const fetchPosts = () => {
   return axios.get(`${API_URL}/posts`, { headers })
 }
