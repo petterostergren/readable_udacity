@@ -27,7 +27,7 @@ export const postVotePost = (option, postId) => {
   return axios.post(`${API_URL}/posts/${postId}`, { option }, { headers })
 }
 
-export const postDelPost = (postId) => {
+export const postDelPost = postId => {
   return axios.delete(`${API_URL}/posts/${postId}`, { headers })
 }
 

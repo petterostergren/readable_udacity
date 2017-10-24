@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import CategoryView from './Category_View'
+import CategoryView from './CategoryView'
 import PostDetails from './PostDetails'
 import Header from './Header'
 import Posts from './Posts'
