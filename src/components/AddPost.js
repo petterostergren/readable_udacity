@@ -38,51 +38,54 @@ class AddPost extends Component {
         <div className="container">
           <h1>Add Post</h1>
 
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field
-              label="Title"
-              name="title"
-              type="input"
-              textType="text"
-              component={this.renderField}
-            />
+          <form
+            className="form"
+            onSubmit={handleSubmit(this.onSubmit.bind(this))}
+          >
+            <div className="form-content-container">
+              <Field
+                label="Title"
+                name="title"
+                type="input"
+                textType="text"
+                component={this.renderField}
+              />
 
-            <Field
-              label="Author"
-              name="author"
-              type="input"
-              textType="text"
-              component={this.renderField}
-            />
+              <Field
+                label="Author"
+                name="author"
+                type="input"
+                textType="text"
+                component={this.renderField}
+              />
 
-            <div className="field">
-              <div className="control">
-                <label className="label">Category</label>
-                <Field name="category" className="select" component="select">
-                  <option />
-                  {categories.map(c => (
-                    <option key={c.name} value={c.path}>
-                      {c.name}
-                    </option>
-                  ))}
-                </Field>
+              <div className="field">
+                <div className="control">
+                  <label className="label">Category</label>
+                  <Field name="category" className="select" component="select">
+                    <option />
+                    {categories.map(c => (
+                      <option key={c.name} value={c.path}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </Field>
+                </div>
               </div>
+
+              <Field
+                label="Body"
+                name="body"
+                type="textarea"
+                textType="text"
+                component={this.renderField}
+              />
+
+              <button className="btn" type="submit">Submit</button>
+              <button className="btn">
+                <Link to="/">Cancel</Link>
+              </button>
             </div>
-
-            <Field
-              label="Body"
-              name="body"
-              type="textarea"
-              textType="text"
-              component={this.renderField}
-            />
-
-            <button className="btn" type="submit">
-              Submit
-            </button>
-            <button className="btn">
-              <Link to="/">Cancel</Link>
-            </button>
           </form>
         </div>
       </div>
