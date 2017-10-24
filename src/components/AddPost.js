@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
@@ -81,7 +82,9 @@ class AddPost extends Component {
                 component={this.renderField}
               />
 
-              <button className="btn" type="submit">Submit</button>
+              <button className="btn" type="submit">
+                Submit
+              </button>
               <button className="btn" type="reset">
                 <Link to="/">Cancel</Link>
               </button>
@@ -91,6 +94,13 @@ class AddPost extends Component {
       </div>
     )
   }
+}
+
+AddPost.propTypes = {
+  createPost: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
 }
 
 export default reduxForm({
