@@ -13,6 +13,18 @@ class PostComponent extends Component {
     getComments(postId)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps.comments)
+    console.log(this.props.comments)
+    {
+      /* TODO: Fix issue with comments number should update on comment del */
+    }
+    // if (prevProps.comments !== this.props.comments) {
+    //   const { postId, getComments } = this.props
+    //   getComments(postId)
+    // }
+  }
+
   render() {
     const {
       postId,
@@ -27,6 +39,7 @@ class PostComponent extends Component {
       comments,
       delPost,
     } = this.props
+
     const time = timeConverter(timestamp)
     return (
       <div className="post" key={postId}>
