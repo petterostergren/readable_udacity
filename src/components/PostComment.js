@@ -31,7 +31,6 @@ class PostComment extends Component {
           />
         </div>
         <div className="post-content-container">
-          <h2>{body}</h2>
           <p className="post-content-info">
             Posted by {author}, {time}
           </p>
@@ -39,7 +38,7 @@ class PostComment extends Component {
           <footer className="post-footer">
             <ul>
               <li>
-                <Link to="#">
+                <Link to="">
                   <i className="fa fa-pencil-square-o" aria-hidden="true" />
                 </Link>
               </li>

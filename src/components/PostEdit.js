@@ -36,7 +36,7 @@ class PostEdit extends Component {
     return (
       <div className="container-wrapper">
         <div className="container">
-          <h1>Add Post</h1>
+          <h1>Edit Post</h1>
 
           <form
             className="form"

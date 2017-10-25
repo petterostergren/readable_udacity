@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getPosts } from '../actions/posts'
 import { getComments } from '../actions/comment'
 import PostComponent from './PostComponent'
@@ -64,11 +65,18 @@ class PostDetails extends Component {
   }
 
   render() {
+    const { post } = this.props
     return (
       <div className="container-wrapper">
         <div className="container">
+          {post ? <h1>{post.title}</h1> : ''}
           {this.renderPosts()}
-          <hr /> {this.renderComments()}
+          <Link className="btn-comment-link" to="#">
+            <button className="btn btn-comment" type="button">
+              <i className="fa fa-plus" aria-hidden="true" /> Add Comment
+            </button>
+          </Link>
+          {this.renderComments()}
         </div>
       </div>
     )

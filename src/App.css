@@ -218,13 +218,13 @@ select {
   height: 35px;
 }
 
-.btn a {
+.btn a,
+.btn-comment-link {
   text-decoration: none;
   color: inherit;
-
 }
 
-button[type=submit], button[type=reset] {
+button[type=submit], button[type=reset], button[type=button] {
     background-color: #eeb833;
     font-weight: 400;
     font-size: .9em;
@@ -234,9 +234,17 @@ button[type=submit], button[type=reset] {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-button[type=submit]:hover, button[type=reset]:hover {
+.btn-comment-link {
+  margin-bottom: 20px;
+  margin-right: 0;
+  margin-left: auto;
+
+}
+
+button[type=submit]:hover, button[type=reset]:hover, button[type=button]:hover {
     background-color: inherit;
     border: solid 1px #eeb833;
     color: inherit;
