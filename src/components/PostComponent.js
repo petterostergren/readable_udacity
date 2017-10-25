@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -108,7 +109,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     comments: state.comments[ownProps.postId]
       ? state.comments[ownProps.postId]
-      : [],
+      : [] && _.filter(state.comments[ownProps.postId], ['deleted', false]),
   }
 }
 

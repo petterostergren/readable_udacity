@@ -27,7 +27,7 @@ class PostDetails extends Component {
           {post ? (
             <PostComment
               key={comment.id}
-              postId={comment.id}
+              commentId={comment.id}
               body={comment.body}
               author={comment.author}
               voteScore={comment.voteScore}
@@ -95,7 +95,7 @@ const mapStateToProps = (state, ownProps) => {
   const { posts, comments } = state
   console.log('This is how comments look inside of mapStateToProps', comments)
   return {
-    comments: comments[ownProps.match.params.postId],
+    comments: comments[ownProps.match.params.postId] && _.filter(comments[ownProps.match.params.postId], ['deleted', false]),
     post: posts.filter(
       item => item.id === ownProps.match.params.postId && item.deleted !== true
     )[0],

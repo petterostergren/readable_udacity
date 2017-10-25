@@ -1,6 +1,7 @@
 import {
   COMMENTS_GET_COMMENTS,
   COMMENTS_POST_VOTE,
+  COMMENTS_DEL_COMMENT,
 } from '../actions/actionConstants'
 
 const comments = (state = {}, action) => {
@@ -17,6 +18,14 @@ const comments = (state = {}, action) => {
       commentList[commentIndex] = action.payload // update the commentList
       const updatedPost = { ...state, [parentId]: commentList } // return new state
       return updatedPost
+    case COMMENTS_DEL_COMMENT:
+      console.log(action)
+      const postId = action.payload.parentId
+      const comments = [...state[postId]]
+      const indexComment = comments.findIndex(({ id }) => action.payload.id)
+      comments[indexComment] = action.payload
+      const updateComment = { ...state, [postId]: comments }
+      return updateComment
     default:
       return state
   }

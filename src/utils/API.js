@@ -62,3 +62,7 @@ export const commentPostVote = (option, postId) => {
 export const fetchComments = postId => {
   return axios.get(`${API_URL}/posts/${postId}/comments`, { headers })
 }
+
+export const commentDelComment = commentId => {
+  return axios.delete(`${API_URL}/comments/${commentId}`, { headers })
+}

@@ -3,31 +3,32 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { timeConverter } from '../utils/helper'
-import { pushVoteComment } from '../actions/comment'
+import { pushVoteComment, delComment } from '../actions/comment'
 
 class PostComment extends Component {
   render() {
     const {
-      postId,
+      commentId,
       voteScore,
       author,
       timestamp,
       body,
       pushVoteComment,
+      delComment,
     } = this.props
     const time = timeConverter(timestamp)
     return (
-      <div className="post" key={postId}>
+      <div className="post" key={commentId}>
         <div className="vote-container">
           <i
             className="fa fa-chevron-up"
             aria-hidden="true"
-            onClick={() => pushVoteComment('upVote', postId)}
+            onClick={() => pushVoteComment('upVote', commentId)}
           />
           <span className="vote-amount">{voteScore}</span>
           <i
             className="fa fa-chevron-down"
-            onClick={() => pushVoteComment('downVote', postId)}
+            onClick={() => pushVoteComment('downVote', commentId)}
           />
         </div>
         <div className="post-content-container">
@@ -43,7 +44,11 @@ class PostComment extends Component {
                 </Link>
               </li>
               <li>
-                <i className="fa fa-trash-o trashCan" aria-hidden="true" />
+                <i
+                  className="fa fa-trash-o trashCan"
+                  aria-hidden="true"
+                  onClick={() => delComment(commentId)}
+                />
               </li>
             </ul>
           </footer>
@@ -54,12 +59,13 @@ class PostComment extends Component {
 }
 
 PostComment.propTypes = {
-  postId: PropTypes.string.isRequired,
+  commentId: PropTypes.string.isRequired,
   voteScore: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
   pushVoteComment: PropTypes.func.isRequired,
+  delComment: PropTypes.func.isRequired,
 }
 
-export default connect(null, { pushVoteComment })(PostComment)
+export default connect(null, { pushVoteComment, delComment })(PostComment)
