@@ -83,6 +83,7 @@ PostEdit.propTypes = {
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.object,
   editPost: PropTypes.func.isRequired,
+  match: PropTypes.object,
 }
 
 const mapStateToProps = (state, ownProps) => {

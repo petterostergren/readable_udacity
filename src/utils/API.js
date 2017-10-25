@@ -16,11 +16,27 @@ export const fetchCategoriesPost = category => {
 }
 
 export const pushPost = option => {
-  return axios.post(`${API_URL}/posts`, { option }, { headers })
+  console.log('post option', option)
+  option = JSON.stringify(option)
+
+  return axios({
+    method: 'post',
+    url: `${API_URL}/posts`,
+    data: option,
+    headers: headers,
+  })
 }
 
 export const putPost = (option, postId) => {
-  return axios.put(`${API_URL}/posts/${postId}`, { option }, { headers })
+  console.log('put option', option)
+  option = JSON.stringify(option)
+
+  return axios({
+    method: 'put',
+    url: `${API_URL}/posts/${postId}`,
+    data: option,
+    headers: headers,
+  })
 }
 
 export const fetchPosts = () => {

@@ -1,23 +1,25 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getCategoriesPost } from '../actions/category'
+import { getPosts } from '../actions/posts'
 import PostComponent from './PostComponent'
 import SortPosts from './SortPosts'
 
 class CategoryView extends Component {
   componentDidMount() {
-    const { getCategoriesPost } = this.props
-    getCategoriesPost(this.props.match.params.category)
+    const { getPosts } = this.props
+    getPosts()
     console.log(this.props)
   }
 
   renderPosts() {
-    const { categories } = this.props
-    console.log(categories)
-    return _.map(categories, post => {
+    const { posts } = this.props
+    console.log(posts)
+    return _.map(posts, post => {
       return (
-        <div className="post-container" key={post.id}>
+        <div className="post-container" key={post.name}>
           <PostComponent
             key={post.id}
             postId={post.id}
@@ -33,8 +35,6 @@ class CategoryView extends Component {
     })
   }
 
-
-
   render() {
     return (
       <div className="container-wrapper">
@@ -48,6 +48,23 @@ class CategoryView extends Component {
   }
 }
 
-export default connect(state => ({ categories: state.categories }), {
-  getCategoriesPost,
-})(CategoryView)
+CategoryView.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = (state, ownProps) => {
+  const { posts } = state
+  console.log(posts)
+  return {
+    categories: state.categories,
+    posts: posts.filter(
+      item => item.category === ownProps.match.params.category
+    ),
+  }
+}
+
+export default connect(mapStateToProps, { getCategoriesPost, getPosts })(
+  CategoryView
+)

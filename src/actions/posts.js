@@ -55,7 +55,6 @@ export function createPost(option) {
   option.deleted = false
   console.log(option)
 
-
   const request = API.pushPost(option)
 
   return dispatch => {
