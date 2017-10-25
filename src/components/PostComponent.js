@@ -14,15 +14,15 @@ class PostComponent extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps.comments)
+    console.log(prevProps)
     console.log(this.props.comments)
     {
       /* TODO: Fix issue with comments number should update on comment del */
     }
-    // if (prevProps.comments !== this.props.comments) {
-    //   const { postId, getComments } = this.props
-    //   getComments(postId)
-    // }
+    if (prevProps.comments.length !== this.props.comments.length) {
+      const { postId, getComments } = this.props
+      getComments(postId)
+    }
   }
 
   render() {
@@ -41,6 +41,7 @@ class PostComponent extends Component {
     } = this.props
 
     const time = timeConverter(timestamp)
+
     return (
       <div className="post" key={postId}>
         <div className="vote-container">
