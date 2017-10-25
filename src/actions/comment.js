@@ -3,7 +3,9 @@ import {
   COMMENTS_GET_COMMENTS,
   COMMENTS_POST_VOTE,
   COMMENTS_DEL_COMMENT,
+  COMMENTS_ADD_COMMENT
 } from './actionConstants'
+import cuid from 'cuid'
 
 export function getComments(postId) {
   const request = API.fetchComments(postId)
@@ -32,6 +34,23 @@ export function delComment(commentId) {
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: COMMENTS_DEL_COMMENT, payload: data })
+    })
+  }
+}
+
+
+export function addComment(option, parentId) {
+  const commentId = cuid()
+  option.id = commentId
+  option.parentId = parentId
+  option.timestamp = Date.now()
+  console.log(option)
+
+  const request = API.pushComment(option)
+
+  return dispatch => {
+    request.then(({ data }) => {
+      dispatch({ type: COMMENTS_ADD_COMMENT, payload: data })
     })
   }
 }

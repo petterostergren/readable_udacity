@@ -67,7 +67,10 @@ class PostDetails extends Component {
         <div className="container">
           {post ? <h1>{post.title}</h1> : ''}
           {this.renderPosts()}
-          <Link className="btn-comment-link" to="#">
+          <Link
+            className="btn-comment-link"
+            to={`${this.props.match.params.postId}/addComment`}
+          >
             <button className="btn btn-comment" type="button">
               <i className="fa fa-plus" aria-hidden="true" /> Add Comment
             </button>

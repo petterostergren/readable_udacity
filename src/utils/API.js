@@ -66,3 +66,15 @@ export const fetchComments = postId => {
 export const commentDelComment = commentId => {
   return axios.delete(`${API_URL}/comments/${commentId}`, { headers })
 }
+
+export const pushComment = option => {
+  console.log('comment option', option)
+  option = JSON.stringify(option)
+
+  return axios({
+    method: 'post',
+    url: `${API_URL}/comments`,
+    data: option,
+    headers: headers,
+  })
+}

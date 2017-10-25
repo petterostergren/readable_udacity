@@ -7,6 +7,7 @@ import Header from './Header'
 import Posts from './Posts'
 import AddPost from './AddPost'
 import PostEdit from './PostEdit'
+import AddComment from './AddComment'
 
 const App = () => {
   return (
@@ -20,6 +21,11 @@ const App = () => {
             <Route exact path="/addPost" component={AddPost} />
             <Route exact path="/:category/:postId" component={PostDetails} />
             <Route exact path="/:category/:postId/edit" component={PostEdit} />
+            <Route
+              exact
+              path="/:category/:postId/addComment"
+              component={AddComment}
+            />
             <Route exact path="/:category" component={CategoryView} />
           </Switch>
         </div>
