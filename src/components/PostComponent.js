@@ -13,13 +13,8 @@ class PostComponent extends Component {
     getComments(postId)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps)
-    console.log(this.props.comments)
-    {
-      /* TODO: Fix issue with comments number should update on comment del */
-    }
-    if (prevProps.comments.length !== this.props.comments.length) {
+  componentDidUpdate(prevProps) {
+    if (this.props.comments.find(x => x.deleted !== false)) {
       const { postId, getComments } = this.props
       getComments(postId)
     }
