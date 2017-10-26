@@ -16,7 +16,7 @@ class PostDetails extends Component {
   }
 
   renderComments() {
-    const { comments, post } = this.props
+    const { comments, post, match } = this.props
     return _.map(comments, comment => {
       return (
         <div key={comment.id} className="post-container">
@@ -24,6 +24,8 @@ class PostDetails extends Component {
             <PostComment
               key={comment.id}
               commentId={comment.id}
+              parentId={comment.parentId}
+              category={match.params.category}
               body={comment.body}
               author={comment.author}
               voteScore={comment.voteScore}

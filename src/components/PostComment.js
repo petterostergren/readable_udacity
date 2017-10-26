@@ -15,6 +15,8 @@ class PostComment extends Component {
       body,
       pushVoteComment,
       delComment,
+      parentId,
+      currentCategory,
     } = this.props
     const time = timeConverter(timestamp)
     return (
@@ -39,7 +41,7 @@ class PostComment extends Component {
           <footer className="post-footer">
             <ul>
               <li>
-                <Link to="">
+                <Link to={`/editcomment/${parentId}/${commentId}`}>
                   <i className="fa fa-pencil-square-o" aria-hidden="true" />
                 </Link>
               </li>
@@ -66,6 +68,8 @@ PostComment.propTypes = {
   body: PropTypes.string.isRequired,
   pushVoteComment: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,
+  currentCategory: PropTypes.object.isRequired,
+  parentId: PropTypes.string.isRequired,
 }
 
 export default connect(null, { pushVoteComment, delComment })(PostComment)

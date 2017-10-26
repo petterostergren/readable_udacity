@@ -78,3 +78,14 @@ export const pushComment = option => {
     headers: headers,
   })
 }
+
+export const putComment = (option, commentId) => {
+  option = JSON.stringify(option)
+
+  return axios({
+    method: 'put',
+    url: `${API_URL}/comments/${commentId}`,
+    data: option,
+    headers: headers,
+  })
+}

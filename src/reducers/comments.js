@@ -3,6 +3,7 @@ import {
   COMMENTS_POST_VOTE,
   COMMENTS_DEL_COMMENT,
   COMMENTS_ADD_COMMENT,
+  COMMENTS_EDIT_COMMENT,
 } from '../actions/actionConstants'
 
 const comments = (state = {}, action) => {
@@ -27,6 +28,13 @@ const comments = (state = {}, action) => {
       comments[indexComment] = payload
       const updateComment = { ...state, [postId]: comments }
       return updateComment
+    case COMMENTS_EDIT_COMMENT:
+      const postParentId = payload.parentId
+      const listComments = [...state[postParentId]]
+      const findIndex = listComments.findIndex(({ id }) => payload.id)
+      listComments[findIndex] = payload
+      const editedComment = { ...state, [postParentId]: listComments }
+      return editedComment
     case COMMENTS_ADD_COMMENT:
       return {
         ...state,

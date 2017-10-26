@@ -3,7 +3,8 @@ import {
   COMMENTS_GET_COMMENTS,
   COMMENTS_POST_VOTE,
   COMMENTS_DEL_COMMENT,
-  COMMENTS_ADD_COMMENT
+  COMMENTS_ADD_COMMENT,
+  COMMENTS_EDIT_COMMENT,
 } from './actionConstants'
 import cuid from 'cuid'
 
@@ -51,6 +52,18 @@ export function addComment(option, parentId) {
   return dispatch => {
     request.then(({ data }) => {
       dispatch({ type: COMMENTS_ADD_COMMENT, payload: data })
+    })
+  }
+}
+
+export function editComment(option, commentId) {
+  option.timestamp = Date.now()
+
+  const request = API.putComment(option, commentId)
+
+  return dispatch => {
+    request.then(({ data }) => {
+      dispatch({ type: COMMENTS_EDIT_COMMENT, payload: data })
     })
   }
 }

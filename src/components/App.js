@@ -8,6 +8,7 @@ import Posts from './Posts'
 import AddPost from './AddPost'
 import PostEdit from './PostEdit'
 import AddComment from './AddComment'
+import CommentEdit from './CommentEdit'
 
 const App = () => {
   return (
@@ -19,8 +20,10 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Posts} />
             <Route exact path="/addPost" component={AddPost} />
-            <Route exact path="/:category/:postId" component={PostDetails} />
+            <Route path="/editcomment/:postId/:commentId" component={CommentEdit} />
+            <Route path="/:category/:postId" component={PostDetails} />
             <Route exact path="/:category/:postId/edit" component={PostEdit} />
+
             <Route
               exact
               path="/:category/:postId/addComment"
