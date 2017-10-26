@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { getCategories } from '../actions/category'
 
 class Header extends Component {
@@ -52,6 +52,8 @@ class Header extends Component {
   }
 }
 
-export default connect(state => ({ categories: state.categories }), {
-  getCategories,
-})(Header)
+export default withRouter(
+  connect(state => ({ categories: state.categories }), {
+    getCategories,
+  })(Header)
+)

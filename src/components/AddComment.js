@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { addComment } from '../actions/comment'
@@ -24,7 +24,7 @@ class AddComment extends Component {
 
   onSubmit(values) {
     console.log(values)
-    
+
     this.props.addComment(values, this.props.match.params.postId)
   }
 
@@ -77,6 +77,6 @@ AddComment.propTypes = {
   addComment: PropTypes.func.isRequired,
 }
 
-export default reduxForm({
+export default withRouter(reduxForm({
   form: 'EditPost',
-})(connect(null, { addComment })(AddComment))
+})(connect(null, { addComment })(AddComment)))

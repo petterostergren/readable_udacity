@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { createPost } from '../actions/posts'
@@ -103,11 +103,13 @@ AddPost.propTypes = {
   categories: PropTypes.array.isRequired,
 }
 
-export default reduxForm({
-  form: 'CreatePost',
-})(
-  connect(state => ({ categories: state.categories }), {
-    createPost,
-    getCategories,
-  })(AddPost)
+export default withRouter(
+  reduxForm({
+    form: 'CreatePost',
+  })(
+    connect(state => ({ categories: state.categories }), {
+      createPost,
+      getCategories,
+    })(AddPost)
+  )
 )

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { getPosts } from '../actions/posts'
 import { getComments } from '../actions/comment'
 import PostComponent from './PostComponent'
@@ -25,7 +25,7 @@ class PostDetails extends Component {
               key={comment.id}
               commentId={comment.id}
               parentId={comment.parentId}
-              category={match.params.category}
+              currentCategory={match.params.category}
               body={comment.body}
               author={comment.author}
               voteScore={comment.voteScore}
@@ -104,4 +104,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { getPosts, getComments })(PostDetails)
+export default withRouter(
+  connect(mapStateToProps, { getPosts, getComments })(PostDetails)
+)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class SortPosts extends Component {
   render() {
@@ -19,4 +19,4 @@ class SortPosts extends Component {
   }
 }
 
-export default SortPosts
+export default withRouter(SortPosts)

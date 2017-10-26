@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { getPosts, editPost } from '../actions/posts'
@@ -95,6 +95,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default reduxForm({
-  form: 'EditPost',
-})(connect(mapStateToProps, { getPosts, editPost })(PostEdit))
+export default withRouter(
+  reduxForm({
+    form: 'EditPost',
+  })(connect(mapStateToProps, { getPosts, editPost })(PostEdit))
+)

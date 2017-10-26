@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { getComments } from '../actions/comment'
 import { timeConverter } from '../utils/helper'
 import { pushVotePost, delPost } from '../actions/posts'
@@ -122,6 +122,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { pushVotePost, getComments, delPost })(
-  PostComponent
+export default withRouter(
+  connect(mapStateToProps, { pushVotePost, getComments, delPost })(
+    PostComponent
+  )
 )

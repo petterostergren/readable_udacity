@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { timeConverter } from '../utils/helper'
 import { pushVoteComment, delComment } from '../actions/comment'
@@ -16,7 +16,6 @@ class PostComment extends Component {
       pushVoteComment,
       delComment,
       parentId,
-      currentCategory,
     } = this.props
     const time = timeConverter(timestamp)
     return (
@@ -68,8 +67,10 @@ PostComment.propTypes = {
   body: PropTypes.string.isRequired,
   pushVoteComment: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,
-  currentCategory: PropTypes.object.isRequired,
+  currentCategory: PropTypes.string.isRequired,
   parentId: PropTypes.string.isRequired,
 }
 
-export default connect(null, { pushVoteComment, delComment })(PostComment)
+export default withRouter(
+  connect(null, { pushVoteComment, delComment })(PostComment)
+)

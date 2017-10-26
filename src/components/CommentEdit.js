@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { editComment } from '../actions/comment'
@@ -67,6 +67,8 @@ CommentEdit.propTypes = {
   match: PropTypes.object,
 }
 
-export default reduxForm({
-  form: 'EditComment',
-})(connect(null, { editComment })(CommentEdit))
+export default withRouter(
+  reduxForm({
+    form: 'EditComment',
+  })(connect(null, { editComment })(CommentEdit))
+)
