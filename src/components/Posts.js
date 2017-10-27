@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPosts } from '../actions/posts'
-import PostComponent from './PostComponent'
 import SortPosts from './SortPosts'
+import PostList from './PostList'
 
 class Posts extends Component {
   componentDidMount() {
@@ -12,33 +12,13 @@ class Posts extends Component {
     getPosts()
   }
 
-  renderPosts() {
-    const { posts } = this.props
-    return _.map(posts, post => {
-      return (
-        <div className="post-container" key={post.id}>
-          <PostComponent
-            key={post.id}
-            postId={post.id}
-            title={post.title}
-            readirect
-            author={post.author}
-            voteScore={post.voteScore}
-            category={post.category}
-            timestamp={post.timestamp}
-          />
-        </div>
-      )
-    })
-  }
-
   render() {
     return (
       <div className="container-wrapper">
         <div className="container">
           <h1>All Posts</h1>
-          {<SortPosts />}
-          {this.renderPosts()}
+          {<SortPosts {...this.props} />}
+          {<PostList {...this.props} />}
         </div>
       </div>
     )
@@ -48,6 +28,7 @@ class Posts extends Component {
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default connect(

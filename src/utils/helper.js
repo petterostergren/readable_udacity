@@ -16,3 +16,23 @@ export function timeConverter(t) {
 //   let date = new Date(t)
 //   return date.toLocaleDateString('en-US', options)
 // }
+
+export function compareHighestScore(a, b) {
+  if (a.voteScore < b.voteScore) {
+    return 1
+  }
+  if (a.voteScore > b.voteScore) {
+    return -1
+  }
+  return 0
+}
+
+export function comparePublished(a, b) {
+  if (a.timestamp < b.timestamp) {
+    return 1
+  }
+  if (a.timestamp > b.timestamp) {
+    return -1
+  }
+  return 0
+}

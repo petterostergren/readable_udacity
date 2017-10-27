@@ -1,11 +1,10 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getCategoriesPost } from '../actions/category'
 import { getPosts } from '../actions/posts'
-import PostComponent from './PostComponent'
 import SortPosts from './SortPosts'
+import PostList from './PostList'
 
 class CategoryView extends Component {
   componentDidMount() {
@@ -13,33 +12,13 @@ class CategoryView extends Component {
     getPosts()
   }
 
-  renderPosts() {
-    const { posts } = this.props
-    return _.map(posts, post => {
-      return (
-        <div className="post-container" key={post.id}>
-          <PostComponent
-            key={post.id}
-            postId={post.id}
-            title={post.title}
-            readirect
-            author={post.author}
-            voteScore={post.voteScore}
-            category={post.category}
-            timestamp={post.timestamp}
-          />
-        </div>
-      )
-    })
-  }
-
   render() {
     return (
       <div className="container-wrapper">
         <div className="container">
           <h1>{`Showing ${this.props.match.params.category} post(s)`}</h1>
-          {<SortPosts />}
-          {this.renderPosts()}
+          {<SortPosts {...this.props} />}
+          {<PostList {...this.props} />}
         </div>
       </div>
     )

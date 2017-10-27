@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
+
 
 class SortPosts extends Component {
   render() {
@@ -10,13 +12,17 @@ class SortPosts extends Component {
             Sort by: <i className="fa fa-caret-down" />
           </button>
           <div className="dropdown-content-sort">
-            <Link to="#">Votes: High-Low</Link>
-            <Link to="#">Votes: Low-High</Link>
+            <Link to={{ search: 'sort=votes' }}>Votes</Link>
+            <Link to={{ search: 'sort=published' }}>Published</Link>
           </div>
         </div>
       </div>
     )
   }
+}
+
+SortPosts.propTypes = {
+  posts: PropTypes.array.isRequired,
 }
 
 export default withRouter(SortPosts)

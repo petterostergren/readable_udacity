@@ -67,7 +67,6 @@ PostComment.propTypes = {
   body: PropTypes.string.isRequired,
   pushVoteComment: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,
-  currentCategory: PropTypes.string.isRequired,
   parentId: PropTypes.string.isRequired,
 }
 
