@@ -20,15 +20,13 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Posts} />
             <Route exact path="/addPost" component={AddPost} />
-            <Route path="/editcomment/:postId/:commentId" component={CommentEdit} />
-            <Route path="/:category/:postId" component={PostDetails} />
-            <Route exact path="/:category/:postId/edit" component={PostEdit} />
-
             <Route
-              exact
-              path="/:category/:postId/addComment"
-              component={AddComment}
+              path="/editcomment/:postId/:commentId"
+              component={CommentEdit}
             />
+            <Route exact path="/addComment/:category/:postId" component={AddComment} />
+            <Route exact path="/:category/:postId/edit" component={PostEdit} />
+            <Route exact path="/:category/:postId" component={PostDetails} />
             <Route exact path="/:category" component={CategoryView} />
           </Switch>
         </div>

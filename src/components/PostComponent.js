@@ -67,7 +67,7 @@ class PostComponent extends Component {
           <footer className="post-footer">
             <ul>
               <li>
-                <Link to={`${category}/${postId}/edit`}>
+                <Link to={`/${category}/${postId}/edit`}>
                   <i className="fa fa-pencil-square-o" aria-hidden="true" />
                 </Link>
               </li>

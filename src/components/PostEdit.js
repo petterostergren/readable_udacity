@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { getPosts, editPost } from '../actions/posts'
@@ -29,6 +29,11 @@ class PostEdit extends Component {
   onSubmit(values) {
     console.log(values)
     this.props.editPost(values, this.props.match.params.postId)
+    this.props.history.goBack()
+  }
+
+  cancelSubmission() {
+    this.props.history.goBack()
   }
 
   render() {
@@ -64,8 +69,12 @@ class PostEdit extends Component {
                 <button className="btn" type="submit">
                   Submit
                 </button>
-                <button className="btn" type="reset">
-                  <Link to="/">Cancel</Link>
+                <button
+                  className="btn"
+                  type="reset"
+                  onClick={this.cancelSubmission.bind(this)}
+                >
+                  Cancel
                 </button>
               </div>
             ) : (
@@ -84,6 +93,7 @@ PostEdit.propTypes = {
   posts: PropTypes.object,
   editPost: PropTypes.func.isRequired,
   match: PropTypes.object,
+  history: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {

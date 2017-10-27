@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { editComment } from '../actions/comment'
@@ -25,6 +25,11 @@ class CommentEdit extends Component {
   onSubmit(values) {
     console.log(values)
     this.props.editComment(values, this.props.match.params.commentId)
+    this.props.history.goBack()
+  }
+
+  cancelSubmission() {
+    this.props.history.goBack()
   }
 
   render() {
@@ -50,8 +55,12 @@ class CommentEdit extends Component {
               <button className="btn" type="submit">
                 Submit
               </button>
-              <button className="btn" type="reset">
-                <Link to="/">Cancel</Link>
+              <button
+                className="btn"
+                type="reset"
+                onClick={this.cancelSubmission.bind(this)}
+              >
+                Cancel
               </button>
             </div>
           </form>
@@ -65,6 +74,7 @@ CommentEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   match: PropTypes.object,
+  history: PropTypes.object.isRequired,
 }
 
 export default withRouter(

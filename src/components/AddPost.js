@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { createPost } from '../actions/posts'
@@ -30,6 +30,11 @@ class AddPost extends Component {
   onSubmit(values) {
     console.log(values)
     this.props.createPost(values)
+    this.props.history.push('/')
+  }
+
+  cancelSubmission() {
+    this.props.history.goBack()
   }
 
   render() {
@@ -85,8 +90,12 @@ class AddPost extends Component {
               <button className="btn" type="submit">
                 Submit
               </button>
-              <button className="btn" type="reset">
-                <Link to="/">Cancel</Link>
+              <button
+                className="btn"
+                type="reset"
+                onClick={this.cancelSubmission.bind(this)}
+              >
+                Cancel
               </button>
             </div>
           </form>
@@ -101,6 +110,7 @@ AddPost.propTypes = {
   getCategories: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 export default withRouter(

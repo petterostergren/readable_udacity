@@ -71,7 +71,7 @@ class PostDetails extends Component {
           {this.renderPosts()}
           <Link
             className="btn-comment-link"
-            to={`${this.props.match.params.postId}/addComment`}
+            to={`/addComment/${this.props.match.params.category}/${this.props.match.params.postId}`}
           >
             <button className="btn btn-comment" type="button">
               <i className="fa fa-plus" aria-hidden="true" /> Add Comment
@@ -90,6 +90,7 @@ PostDetails.propTypes = {
   match: PropTypes.object.isRequired,
   comments: PropTypes.array,
   post: PropTypes.object,
+  history: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {

@@ -11,15 +11,13 @@ class CategoryView extends Component {
   componentDidMount() {
     const { getPosts } = this.props
     getPosts()
-    console.log(this.props)
   }
 
   renderPosts() {
     const { posts } = this.props
-    console.log(posts)
     return _.map(posts, post => {
       return (
-        <div className="post-container" key={post.name}>
+        <div className="post-container" key={post.id}>
           <PostComponent
             key={post.id}
             postId={post.id}
@@ -56,7 +54,6 @@ CategoryView.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const { posts } = state
-  console.log(posts)
   return {
     categories: state.categories,
     posts: posts.filter(
