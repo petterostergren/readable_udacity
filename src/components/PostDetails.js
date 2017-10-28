@@ -6,7 +6,8 @@ import { Link, withRouter } from 'react-router-dom'
 import { getPosts } from '../actions/posts'
 import { getComments } from '../actions/comment'
 import PostComponent from './PostComponent'
-import PostComment from './PostComment'
+import CommentList from './CommentList'
+import SortPosts from './SortPosts'
 
 class PostDetails extends Component {
   componentDidMount() {
@@ -15,29 +16,6 @@ class PostDetails extends Component {
     getComments(match.params.postId)
   }
 
-  renderComments() {
-    const { comments, post, match } = this.props
-    return _.map(comments, comment => {
-      return (
-        <div key={comment.id} className="post-container">
-          {post ? (
-            <PostComment
-              key={comment.id}
-              commentId={comment.id}
-              parentId={comment.parentId}
-              currentCategory={match.params.category}
-              body={comment.body}
-              author={comment.author}
-              voteScore={comment.voteScore}
-              timestamp={comment.timestamp}
-            />
-          ) : (
-            ''
-          )}
-        </div>
-      )
-    })
-  }
 
   renderPosts() {
     const { post } = this.props
@@ -69,15 +47,18 @@ class PostDetails extends Component {
         <div className="container">
           {post ? <h1>{post.title}</h1> : ''}
           {this.renderPosts()}
-          <Link
-            className="btn-comment-link"
-            to={`/addComment/${this.props.match.params.category}/${this.props.match.params.postId}`}
-          >
-            <button className="btn btn-comment" type="button">
-              <i className="fa fa-plus" aria-hidden="true" /> Add Comment
-            </button>
-          </Link>
-          {this.renderComments()}
+          <div className="comment-adjustments">
+            <SortPosts {...this.props}  />
+            <Link
+              className="btn-comment-link"
+              to={`/addComment/${this.props.match.params.category}/${this.props.match.params.postId}`}
+            >
+              <button className="btn btn-comment" type="button">
+                <i className="fa fa-plus" aria-hidden="true" /> Add Comment
+              </button>
+            </Link>
+          </div>
+          {<CommentList {...this.props} />}
         </div>
       </div>
     )

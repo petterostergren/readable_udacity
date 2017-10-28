@@ -111,7 +111,8 @@ nav.top-nav button:hover {
   margin-right: auto;
 }
 
-.dropbtn-sort {
+.dropbtn-sort,
+.dropbtn-sort-comments {
     background-color: inherit;
     color: inherit;
     padding: 5px;
@@ -122,9 +123,26 @@ nav.top-nav button:hover {
     border: solid #eeb833 1px;
 }
 
-.dropdown-sort {
+.dropdown-sort,
+.dropdown-sort-comments {
     position: relative;
+}
 
+.dropdown-sort-comments {
+    display: inline-block;
+    float: right;
+}
+.dropbtn-sort-comments {
+  background-color: #eeb833;
+  font-weight: 400;
+  font-size: .9em;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .dropdown-content-sort {
@@ -148,17 +166,23 @@ nav.top-nav button:hover {
 }
 
 .dropdown-content-sort i:hover,
-.dropdown-content-sort a:hover {
+.dropdown-content-sort a:hover,
+.dropdown-sort-comments i:hover,
+.dropdown-sort-comments a:hover, {
   background-color: #f1f1f1
 }
 
 .dropdown-sort:hover .dropdown-content-sort,
-.dropdown-sort:active .dropdown-content-sort {
+.dropdown-sort:active .dropdown-content-sort,
+.dropdown-sort-comments:hover .dropdown-content-sort,
+.dropdown-sort-comments:active .dropdown-content-sort  {
     display: block;
 }
 
 .dropdown-sort:hover .dropbtn-sort,
-.dropdown-sort:active .dropbtn-sort {
+.dropdown-sort:active .dropbtn-sort,
+.dropdown-sort-comments:hover .dropbtn-sort,
+.dropdown-sort-comments:active .dropbtn-sort, {
 	-webkit-transition: border-radius 1s;
 	transition: border-radius 1s;
 	border-radius: 4px 4px 0 0;
@@ -183,7 +207,7 @@ nav.top-nav button:hover {
   align-items: flex-start;
 }
 
-.post-container { width: 100%;}
+.post-container, .comment-adjustments { width: 100%;}
 
 
 
@@ -248,10 +272,13 @@ button[type=submit], button[type=reset], button[type=button] {
   margin-bottom: 20px;
   margin-right: 0;
   margin-left: auto;
+  float: right;
 
 }
 
-button[type=submit]:hover, button[type=reset]:hover, button[type=button]:hover {
+button[type=submit]:hover,
+button[type=reset]:hover,
+button[type=button]:hover {
     background-color: inherit;
     border: solid 1px #eeb833;
     color: inherit;
