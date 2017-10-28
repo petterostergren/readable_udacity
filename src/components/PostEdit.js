@@ -21,13 +21,19 @@ class PostEdit extends Component {
             type={field.textType}
             {...field.input}
           />
+          {field.meta.touched &&
+            field.meta.error && (
+              <p className="error">
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {field.meta.error}
+              </p>
+            )}
         </div>
       </div>
     )
   }
 
   onSubmit(values) {
-    console.log(values)
     this.props.editPost(values, this.props.match.params.postId)
     this.props.history.goBack()
   }
@@ -47,7 +53,6 @@ class PostEdit extends Component {
             className="form"
             onSubmit={handleSubmit(this.onSubmit.bind(this))}
           >
-            {/* TODO: add dafult state (prevState) */}
             {posts ? (
               <div className="form-content-container">
                 <Field
@@ -66,13 +71,17 @@ class PostEdit extends Component {
                   component={this.renderField}
                 />
 
-                <button className="btn" type="submit">
+                <button
+                  className={'btn'}
+                  type="submit"
+                  disabled={this.props.anyTouched && this.props.valid === false}
+                >
                   Submit
                 </button>
                 <button
                   className="btn"
                   type="reset"
-                  onClick={this.cancelSubmission.bind(this)}
+                  onClick={() => this.cancelSubmission()}
                 >
                   Cancel
                 </button>
@@ -87,6 +96,18 @@ class PostEdit extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {}
+  if (!values.title || values.title.length < 5) {
+    errors.title = 'Please enter a title with at least 5 characters'
+  }
+
+  if (!values.body) {
+    errors.body = 'What Would You Like To Share?'
+  }
+  return errors
+}
+
 PostEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
@@ -94,6 +115,8 @@ PostEdit.propTypes = {
   editPost: PropTypes.func.isRequired,
   match: PropTypes.object,
   history: PropTypes.object.isRequired,
+  anyTouched: PropTypes.bool.isRequired,
+  valid: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -108,5 +131,6 @@ const mapStateToProps = (state, ownProps) => {
 export default withRouter(
   reduxForm({
     form: 'EditPost',
+    validate,
   })(connect(mapStateToProps, { getPosts, editPost })(PostEdit))
 )

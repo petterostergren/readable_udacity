@@ -17,14 +17,19 @@ class AddComment extends Component {
             type={field.textType}
             {...field.input}
           />
+          {field.meta.touched &&
+            field.meta.error && (
+              <p className="error">
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {field.meta.error}
+              </p>
+            )}
         </div>
       </div>
     )
   }
 
   onSubmit(values) {
-    console.log(values)
-
     this.props.addComment(values, this.props.match.params.postId)
     this.props.history.goBack()
   }
@@ -61,13 +66,17 @@ class AddComment extends Component {
                 component={this.renderField}
               />
 
-              <button className="btn" type="submit">
+              <button
+                className={'btn'}
+                type="submit"
+                disabled={this.props.anyTouched && this.props.valid === false}
+              >
                 Submit
               </button>
               <button
                 className="btn"
                 type="reset"
-                onClick={this.cancelSubmission.bind(this)}
+                onClick={() => this.cancelSubmission()}
               >
                 Cancel
               </button>
@@ -79,15 +88,38 @@ class AddComment extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {}
+  if (!values.title || values.title.length < 5) {
+    errors.title = 'Please enter a title with at least 5 characters'
+  }
+
+  if (!values.author) {
+    errors.author = "What's your name?"
+  }
+
+  if (values.category === '') {
+    errors.category = 'What category does the following fit in?'
+  }
+
+  if (!values.body) {
+    errors.body = 'What Would You Like To Share?'
+  }
+  return errors
+}
+
 AddComment.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   match: PropTypes.object,
   addComment: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  anyTouched: PropTypes.bool.isRequired,
+  valid: PropTypes.bool.isRequired,
 }
 
 export default withRouter(
   reduxForm({
     form: 'EditPost',
+    validate,
   })(connect(null, { addComment })(AddComment))
 )

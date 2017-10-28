@@ -249,6 +249,27 @@ select {
   height: 35px;
 }
 
+.error {
+  font-weight: 500;
+  color: #be9020;
+  font-size: 1.2rem;
+  margin-top: 0px;
+  margin-bottom: 1.7rem;
+
+}
+
+.error-btn,
+.error-btn:hover
+.error-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error i {
+  padding-right: 8px;
+}
+
+
 .btn a,
 .btn-comment-link {
   text-decoration: none;
@@ -266,6 +287,19 @@ button[type=submit], button[type=reset], button[type=button] {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
+}
+
+button[type=submit]:disabled,
+button[type=reset]:disabled,
+button[type=button]:disabled,
+button[type=submit]:hover:disabled,
+button[type=reset]:hover:disabled,
+button[type=button]:hover:disabled  {
+  background-color: #eeb833;
+  border: none;
+  color: white;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-comment-link {

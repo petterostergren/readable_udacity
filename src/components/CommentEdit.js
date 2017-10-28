@@ -17,6 +17,13 @@ class CommentEdit extends Component {
             type={field.textType}
             {...field.input}
           />
+          {field.meta.touched &&
+            field.meta.error && (
+              <p className="error">
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {field.meta.error}
+              </p>
+            )}
         </div>
       </div>
     )
@@ -52,13 +59,17 @@ class CommentEdit extends Component {
                 component={this.renderField}
               />
 
-              <button className="btn" type="submit">
+              <button
+                className={'btn'}
+                type="submit"
+                disabled={this.props.anyTouched && this.props.valid === false}
+              >
                 Submit
               </button>
               <button
                 className="btn"
                 type="reset"
-                onClick={this.cancelSubmission.bind(this)}
+                onClick={() => this.cancelSubmission()}
               >
                 Cancel
               </button>
@@ -70,15 +81,26 @@ class CommentEdit extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {}
+  if (!values.body) {
+    errors.body = 'What Would You Like To Share?'
+  }
+  return errors
+}
+
 CommentEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   match: PropTypes.object,
   history: PropTypes.object.isRequired,
+  anyTouched: PropTypes.bool.isRequired,
+  valid: PropTypes.bool.isRequired,
 }
 
 export default withRouter(
   reduxForm({
     form: 'EditComment',
+    validate,
   })(connect(null, { editComment })(CommentEdit))
 )
