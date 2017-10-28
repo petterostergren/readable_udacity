@@ -24,7 +24,11 @@ const App = () => {
               path="/editcomment/:postId/:commentId"
               component={CommentEdit}
             />
-            <Route exact path="/addComment/:category/:postId" component={AddComment} />
+            <Route
+              exact
+              path="/addComment/:category/:postId"
+              component={AddComment}
+            />
             <Route exact path="/:category/:postId/edit" component={PostEdit} />
             <Route exact path="/:category/:postId" component={PostDetails} />
             <Route exact path="/:category" component={CategoryView} />

@@ -16,7 +16,6 @@ class PostDetails extends Component {
     getComments(match.params.postId)
   }
 
-
   renderPosts() {
     const { post } = this.props
     return (

@@ -44,7 +44,6 @@ class AddComment extends Component {
             className="form"
             onSubmit={handleSubmit(this.onSubmit.bind(this))}
           >
-            {/* TODO: add dafult state (prevState) */}
             <div className="form-content-container">
               <Field
                 label="Author"

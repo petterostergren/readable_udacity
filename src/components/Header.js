@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { getCategories } from '../actions/category'
@@ -50,6 +51,11 @@ class Header extends Component {
       </div>
     )
   }
+}
+
+Header.propTypes = {
+  getCategories: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
 }
 
 export default withRouter(

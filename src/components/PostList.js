@@ -6,8 +6,6 @@ import { compareHighestScore, comparePublished } from '../utils/helper'
 import PostComponent from './PostComponent'
 
 class PostList extends Component {
-
-
   renderPosts() {
     const { posts } = this.props
     const searchString = queryString.parse(this.props.location.search)
