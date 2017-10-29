@@ -30,22 +30,6 @@ class Header extends Component {
                 <Link to={`${c.path}`}>{c.name}</Link>
               </li>
             ))}
-
-            {/* <li>
-              <span className="dropdown">
-                <button className="dropbtn" onClick="myFunction()">
-                  Categories
-                  <i className="fa fa-caret-down" />
-                </button>
-                <span className="dropdown-content" id="myDropdown">
-                  {categories.map(c => (
-                    <Link key={c.name} to={`${c.path}`}>
-                      {c.name}
-                    </Link>
-                  ))}
-                </span>
-              </span>
-            </li> */}
           </ul>
         </nav>
       </div>
