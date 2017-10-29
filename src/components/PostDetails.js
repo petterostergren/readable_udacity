@@ -47,10 +47,11 @@ class PostDetails extends Component {
           {post ? <h1>{post.title}</h1> : ''}
           {this.renderPosts()}
           <div className="comment-adjustments">
-            <SortPosts {...this.props}  />
+            <SortPosts {...this.props} />
             <Link
               className="btn-comment-link"
-              to={`/addComment/${this.props.match.params.category}/${this.props.match.params.postId}`}
+              to={`/addComment/${this.props.match.params.category}/${this.props
+                .match.params.postId}`}
             >
               <button className="btn btn-comment" type="button">
                 <i className="fa fa-plus" aria-hidden="true" /> Add Comment

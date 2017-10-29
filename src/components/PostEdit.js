@@ -5,40 +5,17 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { getPosts, editPost } from '../actions/posts'
 import { validate } from '../utils/helper'
+import FormRenderForm from './FormRenderForm'
+import FormButtons from './FormButtons'
 
 class PostEdit extends Component {
   componentWillMount() {
     const { getPosts } = this.props
     getPosts()
   }
-  renderField(field) {
-    return (
-      <div className="field">
-        <div className="control">
-          <label className="label">{field.label}</label>
-          <field.type
-            className={field.type}
-            type={field.textType}
-            {...field.input}
-          />
-          {field.meta.touched &&
-            field.meta.error && (
-              <p className="error">
-                <i className="fa fa-exclamation-circle" aria-hidden="true" />
-                {field.meta.error}
-              </p>
-            )}
-        </div>
-      </div>
-    )
-  }
 
   onSubmit(values) {
     this.props.editPost(values, this.props.match.params.postId)
-    this.props.history.goBack()
-  }
-
-  cancelSubmission() {
     this.props.history.goBack()
   }
 
@@ -60,7 +37,7 @@ class PostEdit extends Component {
                   name="title"
                   type="input"
                   textType="text"
-                  component={this.renderField}
+                  component={FormRenderForm}
                 />
 
                 <Field
@@ -68,23 +45,10 @@ class PostEdit extends Component {
                   name="body"
                   type="textarea"
                   textType="text"
-                  component={this.renderField}
+                  component={FormRenderForm}
                 />
 
-                <button
-                  className={'btn'}
-                  type="submit"
-                  disabled={this.props.anyTouched && this.props.valid === false}
-                >
-                  Submit
-                </button>
-                <button
-                  className="btn"
-                  type="reset"
-                  onClick={() => this.cancelSubmission()}
-                >
-                  Cancel
-                </button>
+                <FormButtons {...this.props} />
               </div>
             ) : (
               ''

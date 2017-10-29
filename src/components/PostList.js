@@ -76,7 +76,6 @@ class PostList extends Component {
 }
 
 PostList.propTypes = {
-  getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired,
 }

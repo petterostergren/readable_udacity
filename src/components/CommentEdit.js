@@ -5,37 +5,13 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { editComment } from '../actions/comment'
 import { validate } from '../utils/helper'
+import FormRenderForm from './FormRenderForm'
+import FormButtons from './FormButtons'
 
 class CommentEdit extends Component {
-  renderField(field) {
-    return (
-      <div className="field">
-        <div className="control">
-          <label className="label">{field.label}</label>
-          <field.type
-            className={field.type}
-            type={field.textType}
-            {...field.input}
-          />
-          {field.meta.touched &&
-            field.meta.error && (
-              <p className="error">
-                <i className="fa fa-exclamation-circle" aria-hidden="true" />
-                {field.meta.error}
-              </p>
-            )}
-        </div>
-      </div>
-    )
-  }
-
   onSubmit(values) {
     console.log(values)
     this.props.editComment(values, this.props.match.params.commentId)
-    this.props.history.goBack()
-  }
-
-  cancelSubmission() {
     this.props.history.goBack()
   }
 
@@ -56,23 +32,10 @@ class CommentEdit extends Component {
                 name="body"
                 type="textarea"
                 textType="text"
-                component={this.renderField}
+                component={FormRenderForm}
               />
 
-              <button
-                className={'btn'}
-                type="submit"
-                disabled={this.props.anyTouched && this.props.valid === false}
-              >
-                Submit
-              </button>
-              <button
-                className="btn"
-                type="reset"
-                onClick={() => this.cancelSubmission()}
-              >
-                Cancel
-              </button>
+              <FormButtons {...this.props} />
             </div>
           </form>
         </div>

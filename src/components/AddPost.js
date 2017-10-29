@@ -6,6 +6,9 @@ import { connect } from 'react-redux'
 import { createPost } from '../actions/posts'
 import { getCategories } from '../actions/category'
 import { validate } from '../utils/helper'
+import FormRenderForm from './FormRenderForm'
+import FormRenderSelect from './FormRenderSelect'
+import FormButtons from './FormButtons'
 
 class AddPost extends Component {
   componentWillMount() {
@@ -13,63 +16,8 @@ class AddPost extends Component {
     getCategories()
   }
 
-  renderField(field) {
-    if (field) {
-      return (
-        <div className="field">
-          <div className="control">
-            <label className="label">{field.label}</label>
-            <field.type
-              className={field.type}
-              type={field.textType}
-              {...field.input}
-            />
-            {field.meta.touched &&
-              field.meta.error && (
-                <p className="error">
-                  <i className="fa fa-exclamation-circle" aria-hidden="true" />
-                  {field.meta.error}
-                </p>
-              )}
-          </div>
-        </div>
-      )
-    }
-  }
-
-  renderSelect(field) {
-    if (field) {
-      return (
-        <div className="field">
-          <div className="control">
-            <label className="label">{field.label}</label>
-            <select className="select" {...field.input}>
-              <option />
-              {field.data.map(c => (
-                <option key={c.name} value={c.path}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-            {field.meta.touched &&
-              field.meta.error && (
-                <p className="error">
-                  <i className="fa fa-exclamation-circle" aria-hidden="true" />
-                  {field.meta.error}
-                </p>
-              )}
-          </div>
-        </div>
-      )
-    }
-  }
-
   onSubmit(values) {
     this.props.createPost(values)
-    this.props.history.goBack()
-  }
-
-  cancelSubmission() {
     this.props.history.goBack()
   }
 
@@ -90,7 +38,7 @@ class AddPost extends Component {
                 name="title"
                 type="input"
                 textType="text"
-                component={this.renderField}
+                component={FormRenderForm}
               />
 
               <Field
@@ -98,7 +46,7 @@ class AddPost extends Component {
                 name="author"
                 type="input"
                 textType="text"
-                component={this.renderField}
+                component={FormRenderForm}
               />
 
               <Field
@@ -107,7 +55,7 @@ class AddPost extends Component {
                 data={categories}
                 dataKey="name"
                 dataValue="path"
-                component={this.renderSelect}
+                component={FormRenderSelect}
               />
 
               <Field
@@ -115,23 +63,9 @@ class AddPost extends Component {
                 name="body"
                 type="textarea"
                 textType="text"
-                component={this.renderField}
+                component={FormRenderForm}
               />
-
-              <button
-                className={'btn'}
-                type="submit"
-                disabled={this.props.anyTouched && this.props.valid === false}
-              >
-                Submit
-              </button>
-              <button
-                className="btn"
-                type="reset"
-                onClick={() => this.cancelSubmission()}
-              >
-                Cancel
-              </button>
+              <FormButtons {...this.props} />
             </div>
           </form>
         </div>

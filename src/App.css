@@ -221,13 +221,21 @@ nav.top-nav button:hover {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
 
-.form-content-container{
-  width: 80%;
+.form-content-container,
+.form-content-button  {
   display: flex;
   margin: 10px auto;
   justify-content: center;
   flex-direction: column;
   padding: 10px 0;
+}
+.form-content-container {
+  width: 80%;
+}
+
+
+.form-content-button {
+  width: 100%;
 }
 
 input[type=text], select, textarea {
