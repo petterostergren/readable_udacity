@@ -36,3 +36,23 @@ export function comparePublished(a, b) {
   }
   return 0
 }
+
+export function validate(values) {
+  const errors = {}
+  if (!values.title || values.title.length < 5) {
+    errors.title = 'Please enter a title with at least 5 characters'
+  }
+
+  if (!values.author) {
+    errors.author = "What's your name?"
+  }
+
+  if (!values.category) {
+    errors.category = 'What category does the following fit in?'
+  }
+
+  if (!values.body) {
+    errors.body = 'What Would You Like To Share?'
+  }
+  return errors
+}

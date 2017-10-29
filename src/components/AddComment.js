@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { addComment } from '../actions/comment'
-// import { createPost } from '../actions/posts'
+import { validate } from '../utils/helper'
 
 class AddComment extends Component {
   renderField(field) {
@@ -86,26 +86,6 @@ class AddComment extends Component {
       </div>
     )
   }
-}
-
-function validate(values) {
-  const errors = {}
-  if (!values.title || values.title.length < 5) {
-    errors.title = 'Please enter a title with at least 5 characters'
-  }
-
-  if (!values.author) {
-    errors.author = "What's your name?"
-  }
-
-  if (values.category === '') {
-    errors.category = 'What category does the following fit in?'
-  }
-
-  if (!values.body) {
-    errors.body = 'What Would You Like To Share?'
-  }
-  return errors
 }
 
 AddComment.propTypes = {

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { editComment } from '../actions/comment'
-// import { createPost } from '../actions/posts'
+import { validate } from '../utils/helper'
 
 class CommentEdit extends Component {
   renderField(field) {
@@ -79,14 +79,6 @@ class CommentEdit extends Component {
       </div>
     )
   }
-}
-
-function validate(values) {
-  const errors = {}
-  if (!values.body) {
-    errors.body = 'What Would You Like To Share?'
-  }
-  return errors
 }
 
 CommentEdit.propTypes = {
