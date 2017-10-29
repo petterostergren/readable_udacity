@@ -36,6 +36,33 @@ class AddPost extends Component {
     }
   }
 
+  renderSelect(field) {
+    if (field) {
+      return (
+        <div className="field">
+          <div className="control">
+            <label className="label">{field.label}</label>
+            <select className="select" {...field.input}>
+              <option />
+              {field.data.map(c => (
+                <option key={c.name} value={c.path}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+            {field.meta.touched &&
+              field.meta.error && (
+                <p className="error">
+                  <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                  {field.meta.error}
+                </p>
+              )}
+          </div>
+        </div>
+      )
+    }
+  }
+
   onSubmit(values) {
     this.props.createPost(values)
     this.props.history.goBack()
@@ -73,29 +100,16 @@ class AddPost extends Component {
                 component={this.renderField}
               />
 
-              <div className="field">
-                <div className="control">
-                  <label className="label">Category</label>
-                  <Field name="category" className="select" component="select">
-                    <option value={false} />
-                    {categories.map(c => (
-                      <option key={c.name} value={c.path}>
-                        {c.name}
-                      </option>
-                    ))}
-                  </Field>
-                </div>
-              </div>
-              {/* This needs to be inserted here some how...
+              <Field
+                label="Category"
+                name="category"
+                data={categories}
+                dataKey="name"
+                dataValue="path"
+                component={this.renderSelect}
+              />
 
-                {field.meta.touched &&
-                  field.meta.error && (
-                    <p className="error">
-                      <i className="fa fa-exclamation-circle" aria-hidden="true" />
-                      {field.meta.error}
-                    </p>
-                  )}
-                */}
+
 
               <Field
                 label="Body"
@@ -137,7 +151,7 @@ function validate(values) {
     errors.author = "What's your name?"
   }
 
-  if (values.category === '') {
+  if (!values.category) {
     errors.category = 'What category does the following fit in?'
   }
 

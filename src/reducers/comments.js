@@ -36,10 +36,16 @@ const comments = (state = {}, action) => {
       const editedComment = { ...state, [postParentId]: listComments }
       return editedComment
     case COMMENTS_ADD_COMMENT:
+      // return {
+      //   ...state,
+      //   [payload.parentId]: payload,
+      // }
+      console.log("REDUCER", state, payload)
       return {
-        ...state,
-        [payload.parentId]: payload,
+        state,
+        [payload.parentId]: [...state[payload.parentId], payload]
       }
+
     default:
       return state
   }
