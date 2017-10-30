@@ -9,7 +9,7 @@ import FormRenderForm from './FormRenderForm'
 import FormButtons from './FormButtons'
 
 class AddComment extends Component {
-  onSubmit(values) {
+  onSubmit = values => {
     this.props.addComment(values, this.props.match.params.postId)
     this.props.history.goBack()
   }
@@ -21,10 +21,7 @@ class AddComment extends Component {
         <div className="container">
           <h1>Add Comment</h1>
 
-          <form
-            className="form"
-            onSubmit={handleSubmit(this.onSubmit.bind(this))}
-          >
+          <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
             <div className="form-content-container">
               <Field
                 label="Author"

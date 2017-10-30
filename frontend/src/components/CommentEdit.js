@@ -9,7 +9,7 @@ import FormRenderForm from './FormRenderForm'
 import FormButtons from './FormButtons'
 
 class CommentEdit extends Component {
-  onSubmit(values) {
+  onSubmit = values => {
     console.log(values)
     this.props.editComment(values, this.props.match.params.commentId)
     this.props.history.goBack()
@@ -22,10 +22,7 @@ class CommentEdit extends Component {
         <div className="container">
           <h1>Edit Comment</h1>
 
-          <form
-            className="form"
-            onSubmit={handleSubmit(this.onSubmit.bind(this))}
-          >
+          <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
             <div className="form-content-container">
               <Field
                 label="Body"

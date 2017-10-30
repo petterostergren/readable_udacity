@@ -16,7 +16,7 @@ class AddPost extends Component {
     getCategories()
   }
 
-  onSubmit(values) {
+  onSubmit = values => {
     this.props.createPost(values)
     this.props.history.goBack()
   }
@@ -28,10 +28,7 @@ class AddPost extends Component {
         <div className="container">
           <h1>Add Post</h1>
 
-          <form
-            className="form"
-            onSubmit={handleSubmit(this.onSubmit.bind(this))}
-          >
+          <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
             <div className="form-content-container">
               <Field
                 label="Title"

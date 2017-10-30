@@ -14,7 +14,7 @@ class PostEdit extends Component {
     getPosts()
   }
 
-  onSubmit(values) {
+  onSubmit = values => {
     this.props.editPost(values, this.props.match.params.postId)
     this.props.history.goBack()
   }
@@ -26,10 +26,7 @@ class PostEdit extends Component {
         <div className="container">
           <h1>Edit Post</h1>
 
-          <form
-            className="form"
-            onSubmit={handleSubmit(this.onSubmit.bind(this))}
-          >
+          <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
             {posts ? (
               <div className="form-content-container">
                 <Field
