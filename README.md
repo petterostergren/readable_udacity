@@ -10,7 +10,7 @@ cd readable_udacity
 ## Server
 
 ```sh
-cd backend
+cd backend/api-server
 npm install
 node server
 ```
