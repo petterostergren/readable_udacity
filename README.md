@@ -1,18 +1,23 @@
 # Readable Project
 
+## Project Files
+
+```sh
+git clone https://github.com/petterostergren/readable_udacity.git
+cd readable_udacity
+```
+
 ## Server
 
 ```sh
-git clone https://github.com/udacity/reactnd-project-readable-starter.git
-cd reactnd-project-readable-starter/api-server/
+cd backend
 npm install
 node server
 ```
 
 ## App
 ```sh
-git clone https://github.com/petterostergren/readable_udacity.git
-cd readable_udacity
+cd frontend
 npm install
 npm start
 ```
