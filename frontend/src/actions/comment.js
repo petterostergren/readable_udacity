@@ -29,7 +29,6 @@ export function pushVoteComment(option, postId) {
 }
 
 export function delComment(commentId) {
-  console.log(commentId)
   const request = API.commentDelComment(commentId)
 
   return dispatch => {
@@ -45,7 +44,6 @@ export function addComment(option, parentId) {
   option.id = commentId
   option.parentId = parentId
   option.timestamp = Date.now()
-  console.log(option)
 
   const request = API.pushComment(option)
 

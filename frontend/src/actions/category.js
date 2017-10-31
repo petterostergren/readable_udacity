@@ -15,7 +15,6 @@ export function getCategories() {
 }
 
 export function getCategoriesPost(category) {
-  console.log(category)
   const request = API.fetchCategoriesPost(category)
 
   return dispatch => {

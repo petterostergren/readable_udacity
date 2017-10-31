@@ -14,7 +14,6 @@ class PostList extends Component {
 
     if (searchValue === 'votes') {
       const sortedPosts = posts.sort(compareHighestScore)
-      console.log(sortedPosts)
       return _.map(sortedPosts, post => {
         return (
           <div className="post-container" key={post.id}>
@@ -33,7 +32,6 @@ class PostList extends Component {
       })
     } else if (searchValue === 'published') {
       const sortedPosts = posts.sort(comparePublished)
-      console.log(sortedPosts)
       return _.map(sortedPosts, post => {
         return (
           <div className="post-container" key={post.id}>

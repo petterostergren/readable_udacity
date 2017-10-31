@@ -10,7 +10,6 @@ import FormButtons from './FormButtons'
 
 class CommentEdit extends Component {
   onSubmit = values => {
-    console.log(values)
     this.props.editComment(values, this.props.match.params.commentId)
     this.props.history.goBack()
   }

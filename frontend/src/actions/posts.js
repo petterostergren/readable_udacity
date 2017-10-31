@@ -53,7 +53,6 @@ export function createPost(option) {
   option.id = postId
   option.timestamp = Date.now()
   option.deleted = false
-  console.log(option)
 
   const request = API.pushPost(option)
 
@@ -65,7 +64,6 @@ export function createPost(option) {
 }
 
 export function editPost(option, postId) {
-  console.log(option, postId)
   const request = API.putPost(option, postId)
 
   return dispatch => {

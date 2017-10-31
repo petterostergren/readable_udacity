@@ -4,10 +4,8 @@ import { Link, withRouter } from 'react-router-dom'
 
 const SortPosts = props => {
   const { match } = props
-  console.log(props)
   const urlMatch = match.path !== '/:category/:postId'
 
-  console.log(urlMatch)
   return (
     <div className={urlMatch ? 'sort-posts' : 'sort-comments'}>
       <div className={urlMatch ? 'dropdown-sort' : 'dropdown-sort-comments'}>

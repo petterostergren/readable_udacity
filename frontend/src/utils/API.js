@@ -16,7 +16,6 @@ export const fetchCategoriesPost = category => {
 }
 
 export const pushPost = option => {
-  console.log('post option', option)
   option = JSON.stringify(option)
 
   return axios({
@@ -28,7 +27,6 @@ export const pushPost = option => {
 }
 
 export const putPost = (option, postId) => {
-  console.log('put option', option)
   option = JSON.stringify(option)
 
   return axios({
@@ -68,7 +66,6 @@ export const commentDelComment = commentId => {
 }
 
 export const pushComment = option => {
-  console.log('comment option', option)
   option = JSON.stringify(option)
 
   return axios({

@@ -31,10 +31,9 @@ CategoryView.propTypes = {
   match: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { posts } = state
+const mapStateToProps = ({ categories, posts }, ownProps) => {
   return {
-    categories: state.categories,
+    categories,
     posts: posts.filter(
       item => item.category === ownProps.match.params.category
     ),
