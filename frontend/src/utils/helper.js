@@ -56,3 +56,15 @@ export function validate(values) {
   }
   return errors
 }
+
+export function editValidate(values) {
+  const errors = {}
+  if (!values.title || values.title.length < 5) {
+    errors.title = 'Please enter a title with at least 5 characters'
+  }
+
+  if (!values.body) {
+    errors.body = 'What Would You Like To Share?'
+  }
+  return errors
+}

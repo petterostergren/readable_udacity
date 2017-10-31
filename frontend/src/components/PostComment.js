@@ -39,7 +39,12 @@ const PostComment = props => {
         <footer className="post-footer">
           <ul>
             <li>
-              <Link to={`/editcomment/${parentId}/${commentId}`}>
+              <Link
+                to={{
+                  pathname: `/editcomment/${parentId}/${commentId}`,
+                  search: `body=${body}`,
+                }}
+              >
                 <i className="fa fa-pencil-square-o" aria-hidden="true" />
               </Link>
             </li>

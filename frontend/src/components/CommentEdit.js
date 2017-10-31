@@ -1,57 +1,51 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
-import { Field, reduxForm } from 'redux-form'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { editComment } from '../actions/comment'
-import { validate } from '../utils/helper'
-import FormRenderForm from './FormRenderForm'
-import FormButtons from './FormButtons'
+import FormEditComment from './FormEditComment'
+import queryString from 'query-string'
 
 class CommentEdit extends Component {
-  onSubmit = values => {
-    this.props.editComment(values, this.props.match.params.commentId)
-    this.props.history.goBack()
-  }
-
   render() {
-    const { handleSubmit } = this.props
-    return (
-      <div className="container-wrapper">
-        <div className="container">
-          <h1>Edit Comment</h1>
+    console.log(this.props)
+    const searchString = queryString.parse(this.props.location.search)
+    let searchValue = searchString['body']
 
-          <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
-            <div className="form-content-container">
-              <Field
-                label="Body"
-                name="body"
-                type="textarea"
-                textType="text"
-                component={FormRenderForm}
-              />
+    if (searchValue) {
+      const initialValues = {
+        body: searchValue,
+      }
 
-              <FormButtons {...this.props} />
-            </div>
-          </form>
+      return (
+        <div className="container-wrapper">
+          <div className="container">
+            <h1>Edit Comment</h1>
+            <FormEditComment initialValues={initialValues} />
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div className="container-wrapper">
+          <div className="container">
+            <Link className="a-404" to={'/'}>
+              <h1>404: Something seems to have gone wrong..</h1>
+              <div className="container-404">
+                <i className="fa fa-backward" aria-hidden="true" />
+                <i className="fa fa-home" aria-hidden="true" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      )
+    }
   }
 }
 
 CommentEdit.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
-  match: PropTypes.object,
-  history: PropTypes.object.isRequired,
-  anyTouched: PropTypes.bool.isRequired,
-  valid: PropTypes.bool.isRequired,
+  location: PropTypes.object,
+  search: PropTypes.object,
 }
 
-export default withRouter(
-  reduxForm({
-    form: 'EditComment',
-    validate,
-  })(connect(null, { editComment })(CommentEdit))
-)
+export default withRouter(connect(null, { editComment })(CommentEdit))
