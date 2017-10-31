@@ -10,7 +10,7 @@ import FormButtons from './FormButtons'
 
 class PostEdit extends Component {
   componentWillMount() {
-    const { getPosts } = this.props
+    const { getPosts, change } = this.props
     getPosts()
   }
 
@@ -34,6 +34,7 @@ class PostEdit extends Component {
                   name="title"
                   type="input"
                   textType="text"
+                  value="test"
                   component={FormRenderForm}
                 />
 
@@ -42,6 +43,7 @@ class PostEdit extends Component {
                   name="body"
                   type="textarea"
                   textType="text"
+                  value="afwf"
                   currentValue={posts.body}
                   component={FormRenderForm}
                 />
@@ -69,12 +71,15 @@ PostEdit.propTypes = {
   valid: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = ({ posts }, ownProps) => {
-  console.log(ownProps)
+const mapStateToProps = ({ posts, initialValues }, ownProps) => {
   return {
     posts: posts.filter(
       item => item.id === ownProps.match.params.postId && item.deleted !== true
     )[0],
+    initialValues: {
+      title: posts[0] !== undefined ? posts[0].title : '',
+      body: posts[0] !== undefined ? posts[0].body : '',
+    },
   }
 }
 
@@ -82,6 +87,6 @@ export default withRouter(
   reduxForm({
     form: 'EditPost',
     validate,
-    initialValues: { title: 'myTitle', body: 'myBody' },
+    enableReinitialize: true,
   })(connect(mapStateToProps, { getPosts, editPost })(PostEdit))
 )
