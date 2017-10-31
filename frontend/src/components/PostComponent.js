@@ -20,6 +20,12 @@ class PostComponent extends Component {
     }
   }
 
+  onDel = postId => {
+    const { delPost } = this.props
+    delPost(postId)
+    this.props.history.push('/')
+  }
+
   render() {
     const {
       postId,
@@ -32,7 +38,6 @@ class PostComponent extends Component {
       readirect,
       pushVotePost,
       comments,
-      delPost,
     } = this.props
 
     const time = timeConverter(timestamp)
@@ -75,7 +80,7 @@ class PostComponent extends Component {
                 <i
                   className="fa fa-trash-o trashCan"
                   aria-hidden="true"
-                  onClick={() => delPost(postId)}
+                  onClick={() => this.onDel(postId)}
                 />
               </li>
             </ul>
@@ -112,6 +117,7 @@ PostComponent.propTypes = {
   category: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
   delPost: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {

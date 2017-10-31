@@ -34,6 +34,7 @@ class PostEdit extends Component {
                   name="title"
                   type="input"
                   textType="text"
+                  currentValue={posts.title}
                   component={FormRenderForm}
                 />
 
@@ -42,6 +43,7 @@ class PostEdit extends Component {
                   name="body"
                   type="textarea"
                   textType="text"
+                  currentValue={posts.body}
                   component={FormRenderForm}
                 />
 
@@ -68,8 +70,7 @@ PostEdit.propTypes = {
   valid: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { posts } = state
+const mapStateToProps = ({ posts }, ownProps) => {
   return {
     posts: posts.filter(
       item => item.id === ownProps.match.params.postId && item.deleted !== true

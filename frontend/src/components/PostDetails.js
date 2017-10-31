@@ -43,23 +43,35 @@ class PostDetails extends Component {
     const { post } = this.props
     return (
       <div className="container-wrapper">
-        <div className="container">
-          {post ? <h1>{post.title}</h1> : ''}
-          {this.renderPosts()}
-          <div className="comment-adjustments">
-            <SortPosts {...this.props} />
-            <Link
-              className="btn-comment-link"
-              to={`/addComment/${this.props.match.params.category}/${this.props
-                .match.params.postId}`}
-            >
-              <button className="btn btn-comment" type="button">
-                <i className="fa fa-plus" aria-hidden="true" /> Add Comment
-              </button>
+        {post ? (
+          <div className="container">
+            {post ? <h1>{post.title}</h1> : ''}
+            {this.renderPosts()}
+            <div className="comment-adjustments">
+              <SortPosts {...this.props} />
+              <Link
+                className="btn-comment-link"
+                to={`/addComment/${this.props.match.params.category}/${this
+                  .props.match.params.postId}`}
+              >
+                <button className="btn btn-comment" type="button">
+                  <i className="fa fa-plus" aria-hidden="true" /> Add Comment
+                </button>
+              </Link>
+            </div>
+            {<CommentList {...this.props} />}
+          </div>
+        ) : (
+          <div className="container">
+            <Link className="a-404" to={'/'}>
+              <h1>404: Sorry we seem to have moved that post</h1>
+              <div className="container-404">
+                <i className="fa fa-backward" aria-hidden="true" />
+                <i className="fa fa-home" aria-hidden="true" />
+              </div>
             </Link>
           </div>
-          {<CommentList {...this.props} />}
-        </div>
+        )}
       </div>
     )
   }
