@@ -34,7 +34,6 @@ class PostEdit extends Component {
                   name="title"
                   type="input"
                   textType="text"
-                  currentValue={posts.title}
                   component={FormRenderForm}
                 />
 
@@ -71,6 +70,7 @@ PostEdit.propTypes = {
 }
 
 const mapStateToProps = ({ posts }, ownProps) => {
+  console.log(ownProps)
   return {
     posts: posts.filter(
       item => item.id === ownProps.match.params.postId && item.deleted !== true
@@ -82,5 +82,6 @@ export default withRouter(
   reduxForm({
     form: 'EditPost',
     validate,
+    initialValues: { title: 'myTitle', body: 'myBody' },
   })(connect(mapStateToProps, { getPosts, editPost })(PostEdit))
 )
