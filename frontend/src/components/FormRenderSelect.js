@@ -2,23 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const FormRenderSelect = props => {
+  const { label, input, meta, data } = props
   return (
     <div className="field">
       <div className="control">
-        <label className="label">{props.label}</label>
-        <select className="select" {...props.input}>
+        <label className="label">{label}</label>
+        <select className="select" {...input}>
           <option />
-          {props.data.map(c => (
+          {data.map(c => (
             <option key={c.name} value={c.path}>
               {c.name}
             </option>
           ))}
         </select>
-        {props.meta.touched &&
-          props.meta.error && (
+        {meta.touched &&
+          meta.error && (
             <p className="error">
               <i className="fa fa-exclamation-circle" aria-hidden="true" />
-              {props.meta.error}
+              {meta.error}
             </p>
           )}
       </div>

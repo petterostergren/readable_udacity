@@ -9,7 +9,8 @@ import NotFound from './NotFound'
 
 class CommentEdit extends Component {
   render() {
-    const searchString = queryString.parse(this.props.location.search)
+    const { location } = this.props
+    const searchString = queryString.parse(location.search)
     let searchValue = searchString['body']
 
     if (searchValue) {
@@ -33,7 +34,6 @@ class CommentEdit extends Component {
 
 CommentEdit.propTypes = {
   location: PropTypes.object,
-  search: PropTypes.object,
 }
 
 export default withRouter(connect(null, { editComment })(CommentEdit))

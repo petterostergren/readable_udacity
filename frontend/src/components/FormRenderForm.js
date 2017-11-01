@@ -2,20 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const FormRenderForm = props => {
+  const { label, type, textType, input, meta } = props
   return (
     <div className="field">
       <div className="control">
-        <label className="label">{props.label}</label>
-        <props.type
-          className={props.type}
-          type={props.textType}
-          {...props.input}
-        />
-        {props.meta.touched &&
-          props.meta.error && (
+        <label className="label">{label}</label>
+        <props.type className={type} type={textType} {...input} />
+        {meta.touched &&
+          meta.error && (
             <p className="error">
               <i className="fa fa-exclamation-circle" aria-hidden="true" />
-              {props.meta.error}
+              {meta.error}
             </p>
           )}
       </div>

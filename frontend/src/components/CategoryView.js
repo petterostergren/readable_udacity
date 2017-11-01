@@ -13,10 +13,11 @@ class CategoryView extends Component {
   }
 
   render() {
+    const { match } = this.props
     return (
       <div className="container-wrapper">
         <div className="container">
-          <h1>{`Showing ${this.props.match.params.category} post(s)`}</h1>
+          <h1>{`Showing ${match.params.category} post(s)`}</h1>
           {<SortPosts {...this.props} />}
           {<PostList {...this.props} />}
         </div>

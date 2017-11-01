@@ -63,6 +63,7 @@ FormEditPost.propTypes = {
   history: PropTypes.object.isRequired,
   anyTouched: PropTypes.bool.isRequired,
   valid: PropTypes.bool.isRequired,
+  error: PropTypes.object,
 }
 
 export default withRouter(

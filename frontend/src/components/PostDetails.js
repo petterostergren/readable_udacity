@@ -18,13 +18,13 @@ class PostDetails extends Component {
   }
 
   renderPosts() {
-    const { post } = this.props
+    const { post, match } = this.props
     return (
       <div className="post-container">
         {post ? (
           <PostComponent
             key={post.id}
-            postId={this.props.match.params.postId}
+            postId={match.params.postId}
             title={post.title}
             body={post.body}
             readirect={false}
@@ -41,7 +41,7 @@ class PostDetails extends Component {
   }
 
   render() {
-    const { post } = this.props
+    const { post, match } = this.props
     return (
       <div>
         {post ? (
@@ -53,8 +53,8 @@ class PostDetails extends Component {
                 <SortPosts {...this.props} />
                 <Link
                   className="btn-comment-link"
-                  to={`/addComment/${this.props.match.params.category}/${this
-                    .props.match.params.postId}`}
+                  to={`/addComment/${match.params.category}/${match.params
+                    .postId}`}
                 >
                   <button className="btn btn-comment" type="button">
                     <i className="fa fa-plus" aria-hidden="true" /> Add Comment
@@ -81,8 +81,7 @@ PostDetails.propTypes = {
   history: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { posts, comments } = state
+const mapStateToProps = ({ posts, comments }, ownProps) => {
   return {
     comments:
       comments[ownProps.match.params.postId] &&

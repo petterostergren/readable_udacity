@@ -120,11 +120,11 @@ PostComponent.propTypes = {
   history: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ comments }, ownProps) => {
   return {
-    comments: state.comments[ownProps.postId]
-      ? state.comments[ownProps.postId]
-      : [] && _.filter(state.comments[ownProps.postId], ['deleted', false]),
+    comments: comments[ownProps.postId]
+      ? comments[ownProps.postId]
+      : [] && _.filter(comments[ownProps.postId], ['deleted', false]),
   }
 }
 

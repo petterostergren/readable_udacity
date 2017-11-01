@@ -14,6 +14,21 @@ class PostDetails extends Component {
     getComments(match.params.postId)
   }
 
+  renderCommentItem(comment, match) {
+    return (
+      <PostComment
+        key={comment.id}
+        commentId={comment.id}
+        parentId={comment.parentId}
+        currentCategory={match.params.category}
+        body={comment.body}
+        author={comment.author}
+        voteScore={comment.voteScore}
+        timestamp={comment.timestamp}
+      />
+    )
+  }
+
   renderComments() {
     const { comments, match, location, post } = this.props
     const searchString = queryString.parse(location.search)
@@ -25,20 +40,7 @@ class PostDetails extends Component {
         return _.map(sortedComments, comment => {
           return (
             <div key={comment.id} className="post-container">
-              {post ? (
-                <PostComment
-                  key={comment.id}
-                  commentId={comment.id}
-                  parentId={comment.parentId}
-                  currentCategory={match.params.category}
-                  body={comment.body}
-                  author={comment.author}
-                  voteScore={comment.voteScore}
-                  timestamp={comment.timestamp}
-                />
-              ) : (
-                ''
-              )}
+              {post ? this.renderCommentItem(comment, match) : ''}
             </div>
           )
         })
@@ -47,20 +49,7 @@ class PostDetails extends Component {
         return _.map(sortedComments, comment => {
           return (
             <div key={comment.id} className="post-container">
-              {post ? (
-                <PostComment
-                  key={comment.id}
-                  commentId={comment.id}
-                  parentId={comment.parentId}
-                  currentCategory={match.params.category}
-                  body={comment.body}
-                  author={comment.author}
-                  voteScore={comment.voteScore}
-                  timestamp={comment.timestamp}
-                />
-              ) : (
-                ''
-              )}
+              {post ? this.renderCommentItem(comment, match) : ''}
             </div>
           )
         })
@@ -68,20 +57,7 @@ class PostDetails extends Component {
         return _.map(comments, comment => {
           return (
             <div key={comment.id} className="post-container">
-              {post ? (
-                <PostComment
-                  key={comment.id}
-                  commentId={comment.id}
-                  parentId={comment.parentId}
-                  currentCategory={match.params.category}
-                  body={comment.body}
-                  author={comment.author}
-                  voteScore={comment.voteScore}
-                  timestamp={comment.timestamp}
-                />
-              ) : (
-                ''
-              )}
+              {post ? this.renderCommentItem(comment, match) : ''}
             </div>
           )
         })
@@ -102,8 +78,7 @@ PostDetails.propTypes = {
   location: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { comments } = state
+const mapStateToProps = ({ comments }, ownProps) => {
   return {
     comments:
       comments[ownProps.match.params.postId] &&
