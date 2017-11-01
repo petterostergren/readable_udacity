@@ -291,14 +291,19 @@ select {
 .a-404{
   text-decoration: none;
   color:inherit;
+  margin: auto;
 }
+.a-404 h3 {
+  text-align: center;
+}
+
 .a-404:hover{
   color: #eeb833;
 }
 
 
 .a-404 i {
-  font-size: 8rem;
+  font-size: 4rem;
 
 }
 
@@ -308,7 +313,7 @@ select {
 }
 
 .a-404 i:first-of-type {
-  margin-right: 50px;
+  margin-right: 25px;
 }
 
 button[type=submit], button[type=reset], button[type=button] {

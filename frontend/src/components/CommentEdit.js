@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { editComment } from '../actions/comment'
 import FormEditComment from './FormEditComment'
 import queryString from 'query-string'
+import NotFound from './NotFound'
 
 class CommentEdit extends Component {
   render() {
@@ -26,19 +27,7 @@ class CommentEdit extends Component {
         </div>
       )
     } else {
-      return (
-        <div className="container-wrapper">
-          <div className="container">
-            <Link className="a-404" to={'/'}>
-              <h1>404: Something seems to have gone wrong..</h1>
-              <div className="container-404">
-                <i className="fa fa-backward" aria-hidden="true" />
-                <i className="fa fa-home" aria-hidden="true" />
-              </div>
-            </Link>
-          </div>
-        </div>
-      )
+      return <NotFound />
     }
   }
 }

@@ -9,6 +9,7 @@ import AddPost from './AddPost'
 import PostEdit from './PostEdit'
 import AddComment from './AddComment'
 import CommentEdit from './CommentEdit'
+import NotFound from './NotFound'
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path="/:category/:postId/edit" component={PostEdit} />
             <Route exact path="/:category/:postId" component={PostDetails} />
             <Route exact path="/:category" component={CategoryView} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
