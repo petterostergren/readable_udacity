@@ -9,7 +9,6 @@ import NotFound from './NotFound'
 
 class CommentEdit extends Component {
   render() {
-    console.log(this.props)
     const searchString = queryString.parse(this.props.location.search)
     let searchValue = searchString['body']
 
