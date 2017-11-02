@@ -65,7 +65,7 @@ class PostComponent extends Component {
             <h2>{title}</h2>
           )}
           <p className="post-content-info">
-            Posted in <Link to={`${category}`}>{category}</Link> by {author},{' '}
+            Posted in <Link to={`/${category}`}>{category}</Link> by {author},{' '}
             {time}
           </p>
           {body ? <p>{body}</p> : ''}
