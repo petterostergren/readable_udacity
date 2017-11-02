@@ -86,17 +86,21 @@ class PostComponent extends Component {
             </ul>
           </footer>
         </div>
-        <div className="message-wrapper">
+        <div
+          className={
+            readirect ? 'message-wrapper' : 'message-wrapper-redirect-non'
+          }
+        >
           {readirect ? (
             <Link to={`${category}/${postId}`}>
               <i className="fa fa-comments-o" aria-hidden="true" />
               <span className="comment-count">{comments.length}</span>
             </Link>
           ) : (
-            <Link to={`${category}/${postId}`}>
+            <div>
               <i className="fa fa-comments-o" aria-hidden="true" />
               <span className="comment-count">{comments.length}</span>
-            </Link>
+            </div>
           )}
         </div>
       </div>

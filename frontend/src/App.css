@@ -469,7 +469,8 @@ button[type=button]:hover {
 }
 
 /* Post Message ------------------- */
-.message-wrapper {
+.message-wrapper,
+.message-wrapper-redirect-non {
   width: 10%;
   display: flex;
   align-items: center;
@@ -484,11 +485,14 @@ button[type=button]:hover {
   color: white;
   cursor: pointer;
 }
-.message-wrapper a i {
+
+.message-wrapper a i,
+.message-wrapper-redirect-non i {
   font-size: 2em; /* 32 px / 16px */
 }
 
-.message-wrapper a {
+.message-wrapper a,
+.message-wrapper {
   text-decoration: none;
   color: inherit;
 
