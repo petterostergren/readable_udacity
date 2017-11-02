@@ -7,6 +7,10 @@ This application is the second project of [Udacity - React Nodedegree Program](h
 
 Backend was supplied by [Udacity](https://www.udacity.com/course/react-nanodegree--nd019)
 
+## Live Preview
+
+[Readable - Heroku ](https://petter-readable.herokuapp.com/)
+
 ## Installation
 ### Clone this repo
 ```sh
