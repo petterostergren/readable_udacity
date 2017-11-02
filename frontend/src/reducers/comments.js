@@ -15,7 +15,6 @@ const comments = (state = {}, action) => {
         [action.meta]: payload,
       }
     case COMMENTS_POST_VOTE:
-      console.log(action.payload.id)
       const { parentId } = action.payload // get commentId
       const commentList = [...state[parentId]] // get array of comments, but copy it
       const commentIndex = commentList.findIndex(

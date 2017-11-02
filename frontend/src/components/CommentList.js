@@ -1,19 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import { compareHighestScore, comparePublished } from '../utils/helper'
-import { getComments } from '../actions/comment'
 import PostComment from './PostComment'
 
-class PostDetails extends Component {
-  componentDidMount() {
-    const { getComments, match } = this.props
-    getComments(match.params.postId)
-  }
-
+class CommentList extends Component {
   renderCommentItem(comment, match) {
     return (
       <PostComment
@@ -70,22 +63,11 @@ class PostDetails extends Component {
   }
 }
 
-PostDetails.propTypes = {
-  getComments: PropTypes.func.isRequired,
+CommentList.propTypes = {
   match: PropTypes.object.isRequired,
   comments: PropTypes.array,
   post: PropTypes.object,
   location: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = ({ comments }, ownProps) => {
-  return {
-    comments:
-      comments[ownProps.match.params.postId] &&
-      _.filter(comments[ownProps.match.params.postId], ['deleted', false]),
-  }
-}
-
-export default withRouter(
-  connect(mapStateToProps, { getComments })(PostDetails)
-)
+export default withRouter(CommentList)
