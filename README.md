@@ -9,7 +9,7 @@ Backend was supplied by [Udacity](https://www.udacity.com/course/react-nanodegre
 
 ## Live Preview
 
-[Readable - Heroku ](https://petter-readable.herokuapp.com/)
+[Readable - Heroku ](https://petter-readable.herokuapp.com/) (Warning - The connection to the api server is quite slow)
 
 ## Installation
 ### Clone this repo
